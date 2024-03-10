@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Godot 4 Test"
+config/name="Code Breaker"
 run/main_scene="res://demo/src/demo/demo.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -32,7 +32,7 @@ idle_quit/timeout=60
 
 [dotnet]
 
-project/assembly_name="Godot 4 Test"
+project/assembly_name="Code Breaker"
 
 [editor_plugins]
 
