@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 BgsCabCredits="*res://addons/bgs_cab_essentials/autoloads/bgs_credits_autoload.gd"
 BgsCabIdleQuit="*res://addons/bgs_cab_essentials/autoloads/bgs_idle_quit_autoload.gd"
 BgsGeneralConfig="*res://addons/bgs_cab_essentials/autoloads/bgs_general_autoload.gd"
+GameData="*res://singletons/game_data.gd"
 
 [bgs_arcade_cab]
 
