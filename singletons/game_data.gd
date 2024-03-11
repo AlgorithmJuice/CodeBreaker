@@ -1,11 +1,13 @@
 extends Node
 
-var data = {}
+var phrases: Array = []
+var words: Dictionary = {}
+var leet: Dictionary = {}
 
 func _ready():
-	data["words"] = load_json("res://data/words.json")
-	data["phrases"] = load_json("res://data/phrases.json")
-	data["leet"] = load_json("res://data/leet.json")
+	phrases = load_json("res://data/phrases.json")
+	words = load_json("res://data/words.json")
+	leet = load_json("res://data/leet.json")
 
 func load_json(filepath: String):
 	if not FileAccess.file_exists(filepath):
