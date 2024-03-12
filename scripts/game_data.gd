@@ -1,5 +1,6 @@
 extends Node
 
+
 var phrases: Array = []
 var words: Dictionary = {}
 var leet: Dictionary = {}
