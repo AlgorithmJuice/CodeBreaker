@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://h233pvvpp0ol"]
 
-[ext_resource type="PackedScene" uid="uid://3r04t2sa1sbq" path="res://demo/src/input_test/input_test.tscn" id="1_gg74l"]
+[ext_resource type="PackedScene" uid="uid://3r04t2sa1sbq" path="res://addons/demo/src/input_test/input_test.tscn" id="1_gg74l"]
 
 [sub_resource type="Theme" id="Theme_4wfyu"]
 MarginContainer/constants/margin_bottom = 32
