@@ -28,7 +28,7 @@ general/hide_cursor=false
 general/force_fullscreen=false
 credits/minimum_required_credits=1
 credits/free_play_enabled=false
-idle_quit/enabled=true
+idle_quit/enabled=false
 idle_quit/timeout=60
 
 [display]
