@@ -1,12 +1,13 @@
 extends Node
 
 
-@export var num_words: int = 50
-@export var current_round: int = 0
-@export var round_time: float = 30
+@export var num_words: int
+@export var num_leet: int
+@export var round_time: float
 
 var passphrase: Array = []
 var words: Array = []
+var current_round: int = 0
 var total_rounds: int = 0
 var passphrase_label: Label = null
 var countdown_label: Label = null
@@ -72,9 +73,20 @@ func init_countdown():
 func get_words():
 	var selected_words = []
 	var length = str(passphrase[current_round].length())
-	var wordlist = GameData.words[length].duplicate()
 	
-	selected_words.append(passphrase[current_round])
+	selected_words.append(passphrase[current_round]) # Add the passphrase word.
+	
+	# Add the leet words.
+	var leetlist = GameData.leet[length].duplicate()
+	for i in range(num_leet):
+		var index = randi() % leetlist.size()
+		var leet = leetlist[index]
+		
+		selected_words.append(leet)
+		leetlist.remove_at(index)
+	
+	# Add the remaining words.
+	var wordlist = GameData.words[length].duplicate()
 	while selected_words.size() < num_words and wordlist.size() > 0:
 		var index = randi() % wordlist.size()
 		var word = wordlist[index]
@@ -86,21 +98,24 @@ func get_words():
 	
 	return selected_words
 	
-func clear_matrix():
+func clear_matrix():	
 	for child in matrix_container.get_children():
 		matrix_container.remove_child(child)
+		child.queue_free()
 
 func display_matrix():
+	var password_button_root = preload("res://nodes/passcode_button.tscn")
 	var shuffled_words = words.duplicate()
 	shuffled_words.shuffle()
 	
 	for word in shuffled_words:
-		var label = Label.new()
+		var button = password_button_root.instantiate()
 		
-		label.text = word
-		matrix_container.add_child(label)
+		button.text = word
+		matrix_container.add_child(button)
 
 func init_matrix():
 	matrix_container = $MarginContainer/VerticalContainer/MatrixContainer
 	
+	clear_matrix()
 	display_matrix()

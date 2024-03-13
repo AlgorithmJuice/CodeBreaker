@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cik3tt8oprefj"]
+[gd_scene load_steps=4 format=3 uid="uid://cik3tt8oprefj"]
 
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_e2t64"]
+[ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_i8jv4"]
+[ext_resource type="PackedScene" uid="uid://d0itxsbroohia" path="res://nodes/passcode_button.tscn" id="3_kodx0"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -9,18 +11,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_i8jv4")
 script = ExtResource("1_e2t64")
 num_words = 64
+num_leet = 2
+round_time = 30.0
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = -25.0
-offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -52,8 +62,200 @@ horizontal_alignment = 2
 
 [node name="MatrixContainer" type="GridContainer" parent="MarginContainer/VerticalContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 20
+theme_override_constants/h_separation = 28
 columns = 8
+
+[node name="PasscodeButton" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton2" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton3" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton4" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton5" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton6" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton7" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton8" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton9" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton10" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton11" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton12" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton13" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton14" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton15" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton16" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton17" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton18" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton19" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton20" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton21" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton22" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton23" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton24" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton25" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton26" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton27" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton28" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton29" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton30" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton31" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton32" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton33" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton34" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton35" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton36" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton37" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton38" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton39" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton40" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton41" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton42" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton43" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton44" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton45" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton46" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton47" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton48" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton49" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton50" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton51" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton52" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton53" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton54" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton55" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton56" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton57" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton58" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton59" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton60" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton61" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton62" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton63" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
+
+[node name="PasscodeButton64" parent="MarginContainer/VerticalContainer/MatrixContainer" instance=ExtResource("3_kodx0")]
+layout_mode = 2
 
 [connection signal="timeout" from="MarginContainer/VerticalContainer/HorizontalContainer/PassphraseLabel/PassphraseTimer" to="." method="_on_passphrase_timer_timeout"]
 [connection signal="timeout" from="MarginContainer/VerticalContainer/HorizontalContainer/CountdownLabel/CountdownTimer" to="." method="_on_countdown_timer_timeout"]
