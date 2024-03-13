@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e2t64")
-passphrase = [null]
+num_words = 64
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -24,27 +24,36 @@ offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HorizontalContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VerticalContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="MarginContainer/VerticalContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="PassphraseLabel" type="Label" parent="MarginContainer/HorizontalContainer"]
+[node name="PassphraseLabel" type="Label" parent="MarginContainer/VerticalContainer/HorizontalContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Password"
 
-[node name="PassphraseTimer" type="Timer" parent="MarginContainer/HorizontalContainer/PassphraseLabel"]
+[node name="PassphraseTimer" type="Timer" parent="MarginContainer/VerticalContainer/HorizontalContainer/PassphraseLabel"]
 wait_time = 0.075
 autostart = true
 
-[node name="CountdownLabel" type="Label" parent="MarginContainer/HorizontalContainer"]
+[node name="CountdownLabel" type="Label" parent="MarginContainer/VerticalContainer/HorizontalContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Countdown"
 horizontal_alignment = 2
 
-[node name="CountdownTimer" type="Timer" parent="MarginContainer/HorizontalContainer/CountdownLabel"]
+[node name="CountdownTimer" type="Timer" parent="MarginContainer/VerticalContainer/HorizontalContainer/CountdownLabel"]
 
-[connection signal="timeout" from="MarginContainer/HorizontalContainer/PassphraseLabel/PassphraseTimer" to="." method="_on_passphrase_timer_timeout"]
-[connection signal="timeout" from="MarginContainer/HorizontalContainer/CountdownLabel/CountdownTimer" to="." method="_on_countdown_timer_timeout"]
+[node name="MatrixContainer" type="GridContainer" parent="MarginContainer/VerticalContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+columns = 8
+
+[connection signal="timeout" from="MarginContainer/VerticalContainer/HorizontalContainer/PassphraseLabel/PassphraseTimer" to="." method="_on_passphrase_timer_timeout"]
+[connection signal="timeout" from="MarginContainer/VerticalContainer/HorizontalContainer/CountdownLabel/CountdownTimer" to="." method="_on_countdown_timer_timeout"]
