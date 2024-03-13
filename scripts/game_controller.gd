@@ -1,23 +1,38 @@
 extends Node
 
 
-var passphrase: Array = []
-var rounds: int = 0
+@export var passphrase: Array = []
+@export var current_round: int = 0
+
+var total_rounds: int = 0
 
 func _ready():
 	passphrase = get_passphrase()
-	rounds = passphrase.size()
+	total_rounds = passphrase.size()
 	
-	get_node("Passcode").text = display_passphrase()
+	get_node("Passcode/PasscodeLabel").text = display_passphrase()
+	
+func _on_passcode_timer_timeout():
+	get_node("Passcode/PasscodeLabel").text = display_passphrase()
 	
 func get_passphrase():
 	var phrase = GameData.phrases[randi() % GameData.phrases.size()]	
 	return phrase.split(" ")
 
 func display_passphrase():
-	var passphrase_text = ""
+	var cracked_passphrase = ""
+	var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	
-	for word in passphrase:
-		passphrase_text += word + " "
+	for i in range(passphrase.size()):
+		var word = passphrase[i]
 		
-	return passphrase_text.left(-1)
+		if i < current_round:
+			cracked_passphrase += word
+		else:
+			for c in word:
+				var index = randi() % alphabet.length()
+				cracked_passphrase += alphabet[index]
+			
+		cracked_passphrase += " "
+	
+	return cracked_passphrase.left(-1)
