@@ -10,9 +10,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e2t64")
+passphrase = [null]
+current_round = 1
 
-[node name="Passcode" type="Label" parent="."]
-layout_mode = 1
+[node name="Passcode" type="Node" parent="."]
+
+[node name="PasscodeLabel" type="Label" parent="Passcode"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -27,3 +30,9 @@ grow_vertical = 2
 text = "Password"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PasscodeTimer" type="Timer" parent="Passcode"]
+wait_time = 0.075
+autostart = true
+
+[connection signal="timeout" from="Passcode/PasscodeTimer" to="." method="_on_passcode_timer_timeout"]
