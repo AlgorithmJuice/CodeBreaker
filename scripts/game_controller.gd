@@ -1,10 +1,12 @@
 extends Node
 
 
-@export var passphrase: Array = []
+@export var num_words: int = 50
 @export var current_round: int = 0
 @export var round_time: float = 30
 
+var passphrase: Array = []
+var words: Array = []
 var total_rounds: int = 0
 var passphrase_label: Label = null
 var countdown_label: Label = null
@@ -12,6 +14,7 @@ var countdown_timer: Timer = null
 
 func _ready():
 	passphrase = get_passphrase()
+	words = get_words()
 	total_rounds = passphrase.size()
 	
 	init_passphrase()
@@ -62,3 +65,21 @@ func init_countdown():
 	countdown_timer.wait_time = round_time
 	countdown_timer.start()
 	countdown_label.text = display_countdown()
+
+func get_words():
+	var selected_words = []
+	var length = str(passphrase[current_round].length())
+	var wordlist = GameData.words[length].duplicate()
+	
+	selected_words.append(passphrase[current_round])
+	while selected_words.size() < num_words and wordlist.size() > 0:
+		var index = randi() % wordlist.size()
+		var word = wordlist[index]
+		
+		if not selected_words.has(word):
+			selected_words.append(word)
+			
+		wordlist.remove_at(index)
+	
+	selected_words.shuffle()
+	return selected_words
