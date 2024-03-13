@@ -11,28 +11,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e2t64")
 passphrase = [null]
-current_round = 1
 
-[node name="Passcode" type="Node" parent="."]
-
-[node name="PasscodeLabel" type="Label" parent="Passcode"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -512.0
-offset_top = -11.5
-offset_right = 512.0
-offset_bottom = 11.5
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Password"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="PasscodeTimer" type="Timer" parent="Passcode"]
+[node name="HorizontalContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PassphraseLabel" type="Label" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Password"
+
+[node name="PassphraseTimer" type="Timer" parent="MarginContainer/HorizontalContainer/PassphraseLabel"]
 wait_time = 0.075
 autostart = true
 
-[connection signal="timeout" from="Passcode/PasscodeTimer" to="." method="_on_passcode_timer_timeout"]
+[node name="CountdownLabel" type="Label" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Countdown"
+horizontal_alignment = 2
+
+[node name="CountdownTimer" type="Timer" parent="MarginContainer/HorizontalContainer/CountdownLabel"]
+
+[connection signal="timeout" from="MarginContainer/HorizontalContainer/PassphraseLabel/PassphraseTimer" to="." method="_on_passphrase_timer_timeout"]
+[connection signal="timeout" from="MarginContainer/HorizontalContainer/CountdownLabel/CountdownTimer" to="." method="_on_countdown_timer_timeout"]
