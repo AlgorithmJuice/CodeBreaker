@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d0itxsbroohia"]
+
+[node name="PasscodeButton" type="Button"]
+size_flags_horizontal = 3
+text = "######"
+alignment = 0

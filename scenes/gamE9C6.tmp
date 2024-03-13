@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://cik3tt8oprefj"]
+
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_e2t64"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e2t64")
+passphrase = [null]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PasscodeLabel" type="Label" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Password"
+
+[node name="PasscodeTimer" type="Timer" parent="MarginContainer/HorizontalContainer/PasscodeLabel"]
+wait_time = 0.075
+autostart = true
+
+[node name="CountdownLabel" type="Label" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Countdown"
+horizontal_alignment = 2
+
+[node name="CountdownTimer" type="Timer" parent="MarginContainer/HorizontalContainer/CountdownLabel"]
+
+[connection signal="timeout" from="MarginContainer/HorizontalContainer/PasscodeLabel/PasscodeTimer" to="." method="_on_passcode_timer_timeout"]
+[connection signal="timeout" from="MarginContainer/HorizontalContainer/CountdownLabel/CountdownTimer" to="." method="_on_countdown_timer_timeout"]

@@ -1,9 +1,9 @@
 extends Node
 
 
-@export var num_words: int = 50
-@export var num_leet: int = 2
-@export var round_time: float = 30
+@export var num_words: int
+@export var num_leet: int
+@export var round_time: float
 
 var passphrase: Array = []
 var words: Array = []
@@ -98,19 +98,21 @@ func get_words():
 	
 	return selected_words
 	
-func clear_matrix():
+func clear_matrix():	
 	for child in matrix_container.get_children():
 		matrix_container.remove_child(child)
+		child.queue_free()
 
 func display_matrix():
+	var password_button_root = preload("res://nodes/passcode_button.tscn")
 	var shuffled_words = words.duplicate()
 	shuffled_words.shuffle()
 	
 	for word in shuffled_words:
-		var label = Button.new()
+		var button = password_button_root.instantiate()
 		
-		label.text = word
-		matrix_container.add_child(label)
+		button.text = word
+		matrix_container.add_child(button)
 
 func init_matrix():
 	matrix_container = $MarginContainer/VerticalContainer/MatrixContainer
