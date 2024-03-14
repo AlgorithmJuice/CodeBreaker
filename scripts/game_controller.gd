@@ -72,9 +72,24 @@ func init_countdown():
 
 func get_words():
 	var selected_words = []
-	var length = str(passphrase[current_round].length())
+	var total_words = num_words - (num_leet + 1) # Exclude leets words and correct word.
+	var word_length = str(passphrase[current_round].length())
+	var wordlist = GameData.words[word_length].duplicate()
 	
-	selected_words.append(passphrase[current_round]) # Add the passphrase word.
+	while selected_words.size() < total_words and wordlist.size() > 0:
+		var index = randi() % wordlist.size()
+		var word = wordlist[index]
+		
+		if not passphrase.has(word):
+			selected_words.append(word)
+			
+		wordlist.remove_at(index)
+	
+	return selected_words
+
+func get_leets():
+	var selected_leets = []
+	var length = str(passphrase[current_round].length())
 	
 	# Add the leet words.
 	var leetlist = GameData.leet[length].duplicate()
@@ -82,22 +97,28 @@ func get_words():
 		var index = randi() % leetlist.size()
 		var leet = leetlist[index]
 		
-		selected_words.append(leet)
+		selected_leets.append(leet)
 		leetlist.remove_at(index)
-	
-	# Add the remaining words.
-	var wordlist = GameData.words[length].duplicate()
-	while selected_words.size() < num_words and wordlist.size() > 0:
-		var index = randi() % wordlist.size()
-		var word = wordlist[index]
 		
-		if not selected_words.has(word):
-			selected_words.append(word)
-			
-		wordlist.remove_at(index)
+	return selected_leets
+
+func add_passcode_button(object, text):
+	var instance = object.instantiate()
 	
-	return selected_words
+	instance.get_node("PasscodeButton").text = text
+	matrix_container.add_child(instance)
+
+func set_default_matrix_focus():
+	matrix_container.get_child(0).get_node("PasscodeButton").grab_focus()
 	
+func shuffle_matrix():
+	var children = matrix_container.get_children()
+	children.shuffle()
+	
+	for child in children:
+		matrix_container.remove_child(child)
+		matrix_container.add_child(child)
+
 func clear_matrix():	
 	for child in matrix_container.get_children():
 		matrix_container.remove_child(child)
@@ -105,14 +126,13 @@ func clear_matrix():
 
 func display_matrix():
 	var password_button_root = preload("res://nodes/passcode_button.tscn")
-	var shuffled_words = words.duplicate()
-	shuffled_words.shuffle()
 	
-	for word in shuffled_words:
-		var passcode_instance = password_button_root.instantiate()
-		passcode_instance.get_node("PasscodeButton").text = word
+	add_passcode_button(password_button_root, passphrase[current_round])
+	for word in words: add_passcode_button(password_button_root, word)
+	for leet in get_leets(): add_passcode_button(password_button_root, leet)
 		
-		matrix_container.add_child(passcode_instance)
+	shuffle_matrix()
+	set_default_matrix_focus()
 
 func init_matrix():
 	matrix_container = $MarginContainer/VerticalContainer/MatrixContainer
