@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcxlmt5wivnct"]
+
+[ext_resource type="PackedScene" uid="uid://d0itxsbroohia" path="res://nodes/passcode_button.tscn" id="1_c4kma"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pc1gi"]
+bg_color = Color(0.956863, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0u3fh"]
+bg_color = Color(0.956863, 0, 0, 1)
+
+[node name="Container" instance=ExtResource("1_c4kma")]
+
+[node name="PasscodeButton" parent="." index="1"]
+theme_override_colors/font_disabled_color = Color(1, 0, 0, 0.498039)
+theme_override_styles/hover = SubResource("StyleBoxFlat_pc1gi")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0u3fh")

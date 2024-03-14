@@ -4,6 +4,7 @@ extends Node
 @export var num_words: int
 @export var num_leet: int
 @export var round_time: float
+@export var time_penalty: int
 
 var passphrase: Array = []
 var words: Array = []
@@ -30,8 +31,37 @@ func _on_passphrase_timer_timeout():
 	passphrase_label.text = display_passphrase()
 
 func _on_countdown_timer_timeout():
+	countdown_timer.wait_time = round_time
+	
 	clear_matrix()
 	display_matrix()
+
+func _on_word_pressed(word):
+	var wait_time = countdown_timer.time_left - time_penalty
+
+	countdown_timer.stop()
+
+	if wait_time <= 0.0:
+		countdown_timer.wait_time = round_time
+		_on_countdown_timer_timeout()
+	else:
+		countdown_timer.wait_time = wait_time
+		
+	countdown_timer.start()
+
+func _on_passcode_pressed():
+	current_round += 1
+	words = get_words()
+	
+	countdown_timer.stop()
+	countdown_timer.wait_time = round_time
+	countdown_timer.start()
+	
+	clear_matrix()
+	display_matrix()
+
+func _on_leet_pressed():
+	print("leet!")
 
 func get_passphrase():
 	var phrase = GameData.phrases[randi() % GameData.phrases.size()]	
@@ -102,10 +132,13 @@ func get_leets():
 		
 	return selected_leets
 
-func add_passcode_button(object, text):
+func add_passcode_button(object, text, signal_connection):
 	var instance = object.instantiate()
+	var button = instance.get_node("PasscodeButton")
 	
-	instance.get_node("PasscodeButton").text = text
+	button.text = text
+	button.connect("pressed", signal_connection)
+	
 	matrix_container.add_child(instance)
 
 func set_default_matrix_focus():
@@ -126,10 +159,11 @@ func clear_matrix():
 
 func display_matrix():
 	var password_button_root = preload("res://nodes/passcode_button.tscn")
+	var leet_button_root = preload("res://nodes/leet_button.tscn")
 	
-	add_passcode_button(password_button_root, passphrase[current_round])
-	for word in words: add_passcode_button(password_button_root, word)
-	for leet in get_leets(): add_passcode_button(password_button_root, leet)
+	add_passcode_button(password_button_root, passphrase[current_round], _on_passcode_pressed)
+	for word in words: add_passcode_button(password_button_root, word, _on_word_pressed.bind(word))
+	for leet in get_leets(): add_passcode_button(leet_button_root, leet, _on_passcode_pressed)
 		
 	shuffle_matrix()
 	set_default_matrix_focus()

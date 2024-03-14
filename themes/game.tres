@@ -29,7 +29,3 @@ Button/styles/hover = SubResource("StyleBoxFlat_wm5e2")
 Button/styles/normal = SubResource("StyleBoxEmpty_61iel")
 Button/styles/pressed = SubResource("StyleBoxFlat_llmuu")
 Label/colors/font_color = Color(0.14902, 0.588235, 0, 1)
-MarginContainer/constants/margin_bottom = 20
-MarginContainer/constants/margin_left = 20
-MarginContainer/constants/margin_right = 20
-MarginContainer/constants/margin_top = 20
