@@ -109,10 +109,10 @@ func display_matrix():
 	shuffled_words.shuffle()
 	
 	for word in shuffled_words:
-		var button = password_button_root.instantiate()
+		var passcode_instance = password_button_root.instantiate()
+		passcode_instance.get_node("PasscodeButton").text = word
 		
-		button.text = word
-		matrix_container.add_child(button)
+		matrix_container.add_child(passcode_instance)
 
 func init_matrix():
 	matrix_container = $MarginContainer/VerticalContainer/MatrixContainer

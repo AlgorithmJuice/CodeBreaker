@@ -48,7 +48,7 @@ size_flags_horizontal = 3
 text = "Password"
 
 [node name="PassphraseTimer" type="Timer" parent="MarginContainer/VerticalContainer/HorizontalContainer/PassphraseLabel"]
-wait_time = 0.075
+wait_time = 0.05
 autostart = true
 
 [node name="CountdownLabel" type="Label" parent="MarginContainer/VerticalContainer/HorizontalContainer"]
