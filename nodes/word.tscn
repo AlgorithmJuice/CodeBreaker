@@ -52,4 +52,8 @@ text = "#"
 layout_mode = 2
 text = "#"
 
+[node name="Word" type="Label" parent="."]
+visible = false
+layout_mode = 2
+
 [connection signal="timeout" from="ByteLabel/ByteTimer" to="." method="_on_byte_timer_timeout"]

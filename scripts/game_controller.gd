@@ -35,6 +35,8 @@ func _ready():
 
 func _process(_delta):
 	countdown_label.text = display_countdown()
+	on_joystick()
+	on_gamepad_button()
 
 func _on_passphrase_timer_timeout():
 	passphrase_label.text = display_passphrase()
@@ -62,7 +64,8 @@ func _on_word_pressed(word):
 
 func _on_passcode_pressed():
 	current_round += 1
-	win_condition_check()
+	if win_condition_check():
+		return
 	
 	words = get_words()
 	
@@ -75,15 +78,17 @@ func _on_passcode_pressed():
 	display_matrix()
 
 func win_condition_check():
-	if current_round == (total_rounds - 1):
+	if current_round == total_rounds:
 		get_tree().change_scene_to_file("res://scenes/final.tscn")
-	return
+		return true
+	return false
 
 func _on_leet_pressed():
 	print("leet!")
 
 func get_passphrase():
 	var phrase = GameData.phrases[randi() % GameData.phrases.size()]	
+	print(phrase)
 	return phrase.split(" ")
 
 func display_passphrase():
@@ -162,19 +167,7 @@ func add_passcode_button(object, text, signal_connection):
 
 func add_pass_word(text):
 	var instance = word_root.instantiate()
-	
-	var word_container = instance.get_node("WordContainer")
-	
-	##clear all labels
-	for child in word_container.get_children():
-		word_container.remove_child(child)
-		child.queue_free()
-	
-	for character in text:
-		var label = Label.new()
-		label.text = character
-		word_container.add_child(label)
-	
+	instance.text = text
 	matrix_container.add_child(instance)
 	
 func shuffle_matrix():
@@ -200,22 +193,21 @@ func clear_matrix():
 		child.queue_free()
 
 func display_matrix():
-	##no need to differentiate password/leetword/regular words
-	##correct word is public variable for checks
-	##leet words will always contain numbers to check for
+	#no need to differentiate password/leetword/regular words
+	#correct word is public variable for checks
+	#leet words will always contain numbers to check for
 	
-	##add passcode word
-	##add leet words
-	##add remaining words based on total words - (leet words + password)
-	
+	#add passcode word
+	#add leet words
+	#add remaining words based on total words - (leet words + password)
 	add_pass_word(current_password)
 	for word in words: add_pass_word(word)
 	for leet in get_leets(): add_pass_word(leet)
 	
-	##shuffle
+	#shuffle
 	shuffle_matrix()
-	##set default focus
-	##set_default_matrix_focus()
+	#set default focus
+	#set_default_matrix_focus()
 	set_cursor_position(0)
 
 func init_matrix():
@@ -225,11 +217,44 @@ func init_matrix():
 	display_matrix()
 	
 func set_cursor_position(index):
-	##un-highlight word at focused index
+	#un-highlight word at focused index
 	update_theme(matrix_container.get_child(focused_index),null)
 	focused_index = index
 	update_theme(matrix_container.get_child(focused_index),theme_highlight)
-	##highlight word at focused index
+	#highlight word at focused index
 
 func update_theme(node, theme):
 	node.set_theme(theme)
+
+func on_joystick():
+	#original parameter pass: ("bgs_right_p%d" % player)
+	#This is hecking fast
+	var new_index = focused_index
+	if Input.is_action_just_pressed("bgs_right_p1"):
+		new_index += 1
+	if Input.is_action_just_pressed("bgs_left_p1"):
+		new_index -= 1
+	if Input.is_action_just_pressed("bgs_down_p1"):
+		new_index += matrix_container.columns
+	if Input.is_action_just_pressed("bgs_up_p1"):
+		new_index -= matrix_container.columns
+	
+	#handle out of bounds case
+	if new_index != focused_index:
+		set_cursor_position(new_index)
+
+func on_gamepad_button():
+	if Input.is_action_just_pressed("bgs_a_p1"):
+		var container = matrix_container.get_child(focused_index)
+		var selected_word = container.text
+		var regex = RegEx.new()
+		regex.compile("\\d")
+		
+		if selected_word == current_password:
+			_on_passcode_pressed()
+		elif regex.search(selected_word):
+			_on_leet_pressed()
+		else:
+			_on_word_pressed(selected_word)
+
+

@@ -18,7 +18,7 @@ var _sprites = {
 var _pos: Vector2i
 
 
-func _process(_delta):
+func _process(_delta):		
 	_pos = Vector2i.ZERO
 	if Input.is_action_pressed("bgs_down_p%d" % player):
 		_pos.y += 1

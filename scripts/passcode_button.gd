@@ -1,5 +1,20 @@
 extends Node
 
+var text: String:
+	get:
+		return text
+	set(new_text):
+		text = new_text
+		
+		for child in $WordContainer.get_children():
+			$WordContainer.remove_child(child)
+			child.queue_free()
+		
+		for character in new_text:
+			var label = Label.new()
+			label.text = character
+			$WordContainer.add_child(label)
+
 func _ready():
 	$ByteLabel.text = get_byte()
 	
