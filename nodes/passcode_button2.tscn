@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bllyq2j4iii64"]
+[gd_scene load_steps=2 format=3 uid="uid://v04b5kcrebns"]
 
 [ext_resource type="Script" path="res://scripts/passcode_button.gd" id="1_e2l3r"]
 

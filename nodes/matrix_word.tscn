@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dm3tlql1y2f3t"]
+[gd_scene format=3 uid="uid://ce32pypv1nvp2"]
 
 [node name="MatrixWord" type="HBoxContainer"]
 offset_right = 40.0
