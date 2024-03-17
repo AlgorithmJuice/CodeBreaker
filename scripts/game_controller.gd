@@ -8,6 +8,7 @@ extends Node
 
 var passphrase: Array = []
 var words: Array = []
+var focused_index: int = 0
 var discovered_letters: Array = []
 var current_round: int = 0
 var total_rounds: int = 0
@@ -19,9 +20,11 @@ var countdown_label: Label = null
 var countdown_timer: Timer = null
 var matrix_container: GridContainer = null
 var word_root: PackedScene = null
+var theme_highlight: Theme = null
 
 func _ready():
 	word_root = preload("res://nodes/word.tscn")
+	theme_highlight = preload("res://themes/highlight.tres")
 	passphrase = get_passphrase()
 	total_rounds = passphrase.size()
 	words = get_words()
@@ -173,9 +176,6 @@ func add_pass_word(text):
 		word_container.add_child(label)
 	
 	matrix_container.add_child(instance)
-
-func set_default_matrix_focus():
-	matrix_container.get_child(0).get_node("PasscodeButton").grab_focus()
 	
 func shuffle_matrix():
 	var children = matrix_container.get_children()
@@ -200,8 +200,6 @@ func clear_matrix():
 		child.queue_free()
 
 func display_matrix():
-	
-	
 	##no need to differentiate password/leetword/regular words
 	##correct word is public variable for checks
 	##leet words will always contain numbers to check for
@@ -218,9 +216,20 @@ func display_matrix():
 	shuffle_matrix()
 	##set default focus
 	##set_default_matrix_focus()
+	set_cursor_position(0)
 
 func init_matrix():
 	matrix_container = $MarginContainer/VerticalContainer/MatrixContainer
 	
 	clear_matrix()
 	display_matrix()
+	
+func set_cursor_position(index):
+	##un-highlight word at focused index
+	update_theme(matrix_container.get_child(focused_index),null)
+	focused_index = index
+	update_theme(matrix_container.get_child(focused_index),theme_highlight)
+	##highlight word at focused index
+
+func update_theme(node, theme):
+	node.set_theme(theme)
