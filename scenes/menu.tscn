@@ -15,9 +15,10 @@ events = [SubResource("InputEventAction_3msqv"), SubResource("InputEventAction_8
 
 [node name="Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 1.5
+anchor_bottom = 0.75
+offset_right = -960.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ctlxc")
