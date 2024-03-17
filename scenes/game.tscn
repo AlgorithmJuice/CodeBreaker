@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_e2t64"]
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_i8jv4"]
-[ext_resource type="PackedScene" uid="uid://crjg54p68pvds" path="res://nodes/passcode_container.tscn" id="4_whkh5"]
+[ext_resource type="PackedScene" uid="uid://crjg54p68pvds" path="res://nodes/word.tscn" id="4_whkh5"]
 
 [node name="Game" type="Control"]
 layout_mode = 3

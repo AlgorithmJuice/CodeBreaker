@@ -12,14 +12,19 @@ var discovered_letters: Array = []
 var current_round: int = 0
 var total_rounds: int = 0
 var passphrase_label: Label = null
+var current_password: String:
+	get: 
+		return passphrase[current_round] if (current_round >= 0 and current_round < total_rounds) else ""
 var countdown_label: Label = null
 var countdown_timer: Timer = null
 var matrix_container: GridContainer = null
+var word_root: PackedScene = null
 
 func _ready():
+	word_root = preload("res://nodes/word.tscn")
 	passphrase = get_passphrase()
-	words = get_words()
 	total_rounds = passphrase.size()
+	words = get_words()
 	
 	init_passphrase()
 	init_countdown()
@@ -112,10 +117,9 @@ func init_countdown():
 	countdown_label.text = display_countdown()
 
 func get_words():
-	print(passphrase[current_round])
 	var selected_words = []
 	var total_words = num_words - (num_leet + 1) # Exclude leets words and correct word.
-	var word_length = str(passphrase[current_round].length())
+	var word_length = str(current_password.length())
 	var wordlist = GameData.words[word_length].duplicate()
 	
 	while selected_words.size() < total_words and wordlist.size() > 0:
@@ -153,6 +157,23 @@ func add_passcode_button(object, text, signal_connection):
 	
 	matrix_container.add_child(instance)
 
+func add_pass_word(text):
+	var instance = word_root.instantiate()
+	
+	var word_container = instance.get_node("WordContainer")
+	
+	##clear all labels
+	for child in word_container.get_children():
+		word_container.remove_child(child)
+		child.queue_free()
+	
+	for character in text:
+		var label = Label.new()
+		label.text = character
+		word_container.add_child(label)
+	
+	matrix_container.add_child(instance)
+
 func set_default_matrix_focus():
 	matrix_container.get_child(0).get_node("PasscodeButton").grab_focus()
 	
@@ -179,15 +200,24 @@ func clear_matrix():
 		child.queue_free()
 
 func display_matrix():
-	var password_button_root = preload("res://nodes/passcode_button.tscn")
-	var leet_button_root = preload("res://nodes/leet_button.tscn")
 	
-	add_passcode_button(password_button_root, passphrase[current_round], _on_passcode_pressed)
-	for word in words: add_passcode_button(password_button_root, word, _on_word_pressed.bind(word))
-	for leet in get_leets(): add_passcode_button(leet_button_root, leet, _on_passcode_pressed)
-		
+	
+	##no need to differentiate password/leetword/regular words
+	##correct word is public variable for checks
+	##leet words will always contain numbers to check for
+	
+	##add passcode word
+	##add leet words
+	##add remaining words based on total words - (leet words + password)
+	
+	add_pass_word(current_password)
+	for word in words: add_pass_word(word)
+	for leet in get_leets(): add_pass_word(leet)
+	
+	##shuffle
 	shuffle_matrix()
-	set_default_matrix_focus()
+	##set default focus
+	##set_default_matrix_focus()
 
 func init_matrix():
 	matrix_container = $MarginContainer/VerticalContainer/MatrixContainer
