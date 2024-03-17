@@ -20,7 +20,6 @@ func _ready():
 	passphrase = get_passphrase()
 	words = get_words()
 	total_rounds = passphrase.size()
-	print("total rounds: " + str(total_rounds))
 	
 	init_passphrase()
 	init_countdown()
@@ -34,12 +33,14 @@ func _on_passphrase_timer_timeout():
 
 func _on_countdown_timer_timeout():
 	countdown_timer.wait_time = round_time
-	
+	clear_discovered_letters()
 	clear_matrix()
 	display_matrix()
 
 func _on_word_pressed(word):
 	var wait_time = countdown_timer.time_left - time_penalty
+	add_discovered_letters(word)
+	print(discovered_letters)
 
 	countdown_timer.stop()
 
@@ -61,6 +62,7 @@ func _on_passcode_pressed():
 	countdown_timer.wait_time = round_time
 	countdown_timer.start()
 	
+	clear_discovered_letters()
 	clear_matrix()
 	display_matrix()
 
@@ -110,7 +112,7 @@ func init_countdown():
 	countdown_label.text = display_countdown()
 
 func get_words():
-	print("get words called")
+	print(passphrase[current_round])
 	var selected_words = []
 	var total_words = num_words - (num_leet + 1) # Exclude leets words and correct word.
 	var word_length = str(passphrase[current_round].length())
@@ -161,6 +163,13 @@ func shuffle_matrix():
 	for child in children:
 		matrix_container.remove_child(child)
 		matrix_container.add_child(child)
+
+func add_discovered_letters(word):
+	var active_word = passphrase[current_round]
+	for character in word:
+		if character in active_word and character not in discovered_letters:
+			discovered_letters.append(character)
+	return
 
 func clear_discovered_letters():
 	discovered_letters = []
