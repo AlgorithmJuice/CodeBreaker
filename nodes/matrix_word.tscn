@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dm3tlql1y2f3t"]
+
+[node name="MatrixWord" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Prefix" type="Label" parent="."]
+layout_mode = 2
+text = ">"
+
+[node name="Word" type="Label" parent="."]
+layout_mode = 2
+text = "Word"
+
+[node name="Cursor" type="Label" parent="."]
+layout_mode = 2
+text = "█"

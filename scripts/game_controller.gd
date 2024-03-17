@@ -169,11 +169,9 @@ func add_discovered_letters(word):
 	for character in word:
 		if character in active_word and character not in discovered_letters:
 			discovered_letters.append(character)
-	return
 
 func clear_discovered_letters():
 	discovered_letters = []
-	return
 
 func clear_matrix():	
 	for child in matrix_container.get_children():

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c15vmsaf4o8ma"]
+
+[ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_ule1r"]
+
+[node name="TerminalCharacter" type="Label"]
+offset_right = 11.0
+offset_bottom = 23.0
+theme = ExtResource("1_ule1r")
+text = "A"
