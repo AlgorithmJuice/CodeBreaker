@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0itxsbroohia"]
+[gd_scene load_steps=2 format=3 uid="uid://v04b5kcrebns"]
 
-[ext_resource type="Script" path="res://scripts/passcode_button.gd" id="1_ohysi"]
+[ext_resource type="Script" path="res://scripts/passcode_button.gd" id="1_e2l3r"]
 
 [node name="Container" type="HBoxContainer"]
-offset_right = 40.0
+offset_right = 276.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
-script = ExtResource("1_ohysi")
+script = ExtResource("1_e2l3r")
 
 [node name="ByteLabel" type="Label" parent="."]
 layout_mode = 2
@@ -16,10 +16,10 @@ text = "xFF"
 wait_time = 0.1
 autostart = true
 
-[node name="PasscodeButton" type="Button" parent="."]
+[node name="WordRTL" type="RichTextLabel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "######"
-alignment = 0
+bbcode_enabled = true
+text = "[color=blue]blue[/color] and [color=red]red[/color]"
 
 [connection signal="timeout" from="ByteLabel/ByteTimer" to="." method="_on_byte_timer_timeout"]
