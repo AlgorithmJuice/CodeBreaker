@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://qjlejwtsshco"]
+[gd_scene load_steps=5 format=3 uid="uid://qjlejwtsshco"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_570el"]
+[ext_resource type="Script" path="res://scripts/test_matrix.gd" id="1_570el"]
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_lru2y"]
-[ext_resource type="PackedScene" uid="uid://doiljpngvp4sm" path="res://scenes/packed/matrix.tscn" id="2_40uxf"]
-[ext_resource type="PackedScene" uid="uid://ddovcpoja5o2o" path="res://scenes/packed/passphrase.tscn" id="3_5ux31"]
-[ext_resource type="PackedScene" uid="uid://b2vignhq2hqhb" path="res://scenes/packed/timer.tscn" id="4_pvrrw"]
+[ext_resource type="PackedScene" uid="uid://doiljpngvp4sm" path="res://nodes/matrix.tscn" id="2_40uxf"]
+[ext_resource type="PackedScene" uid="uid://ddovcpoja5o2o" path="res://nodes/passphrase.tscn" id="3_5ux31"]
 
-[node name="Game" type="Control"]
+[node name="TestMatrix" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,8 +16,6 @@ theme = ExtResource("1_lru2y")
 script = ExtResource("1_570el")
 num_words = 64
 num_leet = 2
-round_time = 30.0
-time_penalty = 5
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -53,8 +50,14 @@ size_flags_vertical = 0
 [node name="Passphrase" parent="MarginContainer/VerticalContainer/HorizontalContainer" instance=ExtResource("3_5ux31")]
 layout_mode = 2
 
-[node name="Timer" parent="MarginContainer/VerticalContainer/HorizontalContainer" instance=ExtResource("4_pvrrw")]
+[node name="Timer" type="Label" parent="MarginContainer/VerticalContainer/HorizontalContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Countdown"
+horizontal_alignment = 2
+
+[node name="CountdownTimer" type="Timer" parent="MarginContainer/VerticalContainer/HorizontalContainer/Timer"]
 
 [node name="Matrix" parent="MarginContainer/VerticalContainer" instance=ExtResource("2_40uxf")]
 layout_mode = 2
