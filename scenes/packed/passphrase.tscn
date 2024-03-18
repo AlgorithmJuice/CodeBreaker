@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddovcpoja5o2o"]
+
+[ext_resource type="Script" path="res://scripts/passphrase.gd" id="1_ja5fy"]
+
+[node name="Passphrase" type="Label"]
+size_flags_horizontal = 3
+text = "Password"
+script = ExtResource("1_ja5fy")
+words = ["HELLO", "WORLD"]
+
+[node name="PassphraseTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="PassphraseTimer" to="." method="_on_passphrase_timer_timeout"]

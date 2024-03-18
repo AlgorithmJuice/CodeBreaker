@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw0a5l0pi1cw0"]
+
+[ext_resource type="Script" path="res://scripts/word.gd" id="1_w8p3w"]
+
+[node name="Word" type="HBoxContainer"]
+offset_right = 276.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_w8p3w")
+
+[node name="ByteLabel" type="Label" parent="."]
+layout_mode = 2
+text = "xFF "
+
+[node name="ByteTimer" type="Timer" parent="ByteLabel"]
+wait_time = 0.1
+autostart = true
+
+[node name="WordContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Character0" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[node name="Character1" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[node name="Character2" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[node name="Character3" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[node name="Character4" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[node name="Character5" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[node name="Character6" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[node name="Character7" type="Label" parent="WordContainer"]
+layout_mode = 2
+text = "#"
+
+[connection signal="timeout" from="ByteLabel/ByteTimer" to="." method="_on_byte_timer_timeout"]

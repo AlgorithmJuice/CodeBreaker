@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://okpngbyww6g8"]
 
-[ext_resource type="Script" path="res://scripts/menu_controller.gd" id="1_ctlxc"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ctlxc"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_3msqv"]
 action = &"bgs_start_p1"

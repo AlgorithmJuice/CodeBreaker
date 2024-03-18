@@ -20,12 +20,12 @@ config/icon="res://icon.svg"
 BgsCabCredits="*res://addons/bgs_cab_essentials/autoloads/bgs_credits_autoload.gd"
 BgsCabIdleQuit="*res://addons/bgs_cab_essentials/autoloads/bgs_idle_quit_autoload.gd"
 BgsGeneralConfig="*res://addons/bgs_cab_essentials/autoloads/bgs_general_autoload.gd"
-GameData="*res://scripts/game_data.gd"
+GameData="*res://scripts/data.gd"
 
 [bgs_arcade_cab]
 
 general/hide_cursor=false
-general/force_fullscreen=true
+general/force_fullscreen=false
 credits/minimum_required_credits=1
 credits/free_play_enabled=false
 idle_quit/enabled=false
@@ -35,7 +35,6 @@ idle_quit/timeout=60
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 
 [dotnet]
 
