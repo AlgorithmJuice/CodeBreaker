@@ -1,6 +1,7 @@
 extends GridContainer
 
 var selected_index: int = 0
+var known_chars = []
 var word_scene: PackedScene = preload("res://scenes/packed/word.tscn")
 var themes: Dictionary = {
 	"default": null,
@@ -38,6 +39,7 @@ func display(words):
 
 func reset(words):
 	selected_index = 0
+	known_chars = []
 	clear()
 	
 	display(words)
@@ -49,3 +51,8 @@ func set_selected_index(input_vector):
 	selected_index += (input_vector[0] + (input_vector[1] * self.columns))
 	
 	_highlight_selected_word()
+
+func add_known_chars(chars):
+	for char in chars:
+		if char not in known_chars:
+			known_chars.append(char)

@@ -47,11 +47,11 @@ func _on_input_gamepad():
 		var word = matrix_node.selected_word
 		
 		if word == current_password:
-			handle_correct_word()
+			_handle_correct_word()
 		elif _is_leet(word):
-			handle_leet_word()
+			_handle_leet_word()
 		else:
-			handle_wrong_word()
+			_handle_wrong_word(word)
 
 func _on_timer_timeout():
 	if timer_node.time_left <= 0:
@@ -129,7 +129,16 @@ func _init_matrix():
 	
 	return tree_instance
 
-func handle_correct_word():
+func _compare_characters(word1, word2):
+	var characters = []
+	
+	for char in word1:
+		if word2.find(char) != -1 and char not in characters:
+			characters.append(char)
+			
+	return characters
+
+func _handle_correct_word():
 	current_round += 1
 	
 	if current_round == total_rounds:
@@ -140,8 +149,11 @@ func handle_correct_word():
 		passphrase_node.current_round = current_round
 		timer_node.reset()
 
-func handle_leet_word():
+func _handle_leet_word():
 	print("leet word") # TODO: Perform hacks!
 
-func handle_wrong_word():
+func _handle_wrong_word(word):
+	var found_chars = _compare_characters(word, current_password)
+	matrix_node.add_known_chars(found_chars)
+	
 	timer_node.time_left -= time_penalty
