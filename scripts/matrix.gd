@@ -1,6 +1,7 @@
 extends GridContainer
 
 var selected_index: int = 0
+var known_chars = []
 var word_scene: PackedScene = preload("res://scenes/packed/word.tscn")
 var themes: Dictionary = {
 	"default": null,
@@ -11,7 +12,7 @@ var selected_word: String:
 	get: return self.get_child(selected_index).word
 
 func _highlight_selected_word():
-	self.get_child(selected_index).set_theme(themes["highlight"])
+	self.get_child(selected_index).get_node("WordContainer").set_theme(themes["highlight"])
 
 func clear():
 	for child in self.get_children():
@@ -38,14 +39,30 @@ func display(words):
 
 func reset(words):
 	selected_index = 0
+	known_chars = []
 	clear()
 	
 	display(words)
 
 func set_selected_index(input_vector):
-	self.get_child(selected_index).set_theme(themes["default"])
+	self.get_child(selected_index).get_node("WordContainer").set_theme(themes["default"])
 	
-	# TODO: Fix out-of-bounds errors.
-	selected_index += (input_vector[0] + (input_vector[1] * self.columns))
+	var index
+	if selected_index % self.columns == 0 and input_vector[0] < 0:
+		index = self.columns - 1
+	elif selected_index % self.columns == self.columns - 1 and input_vector[0] > 0:
+		index = -(self.columns - 1)
+	elif selected_index / self.columns == 0 and input_vector[1] < 0:
+		index = self.get_children().size() - self.columns
+	elif selected_index / self.columns == (self.get_children().size() / self.columns) - 1 and input_vector[1] > 0:
+		index = -(self.get_children().size() - self.columns)
+	else:
+		index = (input_vector[0] + (input_vector[1] * self.columns))
 	
+	selected_index += index
 	_highlight_selected_word()
+
+func add_known_chars(characters):
+	for character in characters:
+		if character not in known_chars:
+			known_chars.append(character)

@@ -30,7 +30,6 @@ func _set_init_time(new_time):
 func _set_time_left(remaining):
 	stop()
 	
-	print(remaining)
 	if remaining <= 0.0:
 		wait_time = init_time
 	else:
