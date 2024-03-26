@@ -6,12 +6,14 @@ extends Control
 @export var round_time: int
 @export var time_penalty: int
 @export var player1: Node
+@export var player2: Node
 
 func _ready():
 	var passphrase = _gen_passphrase()
 	var wordlists = _gen_wordlists(passphrase)
 	
 	_init_player(player1, passphrase, wordlists)
+	_init_player(player2, passphrase, wordlists)
 
 func _gen_passphrase():
 	var phrase = GameData.phrases[randi() % GameData.phrases.size()]	

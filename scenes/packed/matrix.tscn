@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bw0a5l0pi1cw0" path="res://scenes/packed/word.tscn" id="2_nkj3d"]
 
 [node name="Matrix" type="GridContainer"]
-columns = 8
+columns = 7
 script = ExtResource("1_n3o0n")
 
 [node name="Word0" parent="." instance=ExtResource("2_nkj3d")]
@@ -197,4 +197,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Word63" parent="." instance=ExtResource("2_nkj3d")]
+layout_mode = 2
+
+[node name="Word64" parent="." instance=ExtResource("2_nkj3d")]
+layout_mode = 2
+
+[node name="Word65" parent="." instance=ExtResource("2_nkj3d")]
 layout_mode = 2
