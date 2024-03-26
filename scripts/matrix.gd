@@ -6,14 +6,20 @@ var known_chars = []
 var word_scene: PackedScene = preload("res://scenes/packed/word.tscn")
 var themes: Dictionary = {
 	"default": null,
-	"highlight": preload("res://themes/highlight.tres")
+	"highlighted_word": preload("res://themes/highlighted_word.tres"),
+	"highlighted_character": preload("res://themes/highlighted_character.tres")
 }
 
 var selected_word: String:
 	get: return self.get_child(selected_index).word
 
-func _highlight_selected_word():
-	self.get_child(selected_index).get_node("WordContainer").set_theme(themes["highlight"])
+func _highlight_word(word):
+	word.get_node("WordContainer").set_theme(themes["highlighted_word"])
+	
+func _highlight_characters(word):
+	for character in word.get_node("WordContainer").get_children():
+		if character.text in known_chars:
+			character.set_theme(themes["highlighted_character"])
 
 func clear():
 	for child in self.get_children():
@@ -21,19 +27,29 @@ func clear():
 		child.queue_free()
 
 func display():
-	for word in words:
+	for i in range(words.size()):
+		var word = words[i]
+		
 		var word_instance = word_scene.instantiate()
 		word_instance.word = word
 		
+		if i == selected_index:
+			_highlight_word(word_instance)
+		else:
+			_highlight_characters(word_instance)
+		
 		self.add_child(word_instance)
-	_highlight_selected_word()
+
+func reload():
+	clear()
+	display()
 
 func reset():
 	selected_index = 0
 	known_chars = []
-	clear()
-	
 	words.shuffle()
+	
+	clear()
 	display()
 
 func set_selected_index(input_vector):

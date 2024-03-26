@@ -78,6 +78,7 @@ func _handle_correct_word():
 	if current_round == total_rounds:
 		get_tree().change_scene_to_file("res://scenes/final.tscn")
 	else:
+		matrix.words = current_wordlist
 		matrix.reset()
 		passphrase.current_round = current_round
 		timer.reset()
@@ -88,6 +89,7 @@ func _handle_leet_word():
 func _handle_wrong_word(word):
 	var found_chars = _compare_characters(word, current_password)
 	matrix.add_known_chars(found_chars)
+	matrix.reload()
 	
 	timer.time_left -= time_penalty
 
