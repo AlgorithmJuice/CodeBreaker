@@ -87,6 +87,7 @@ func _handle_leet_word():
 func _handle_wrong_word(word):
 	var found_chars = _compare_characters(word, current_password)
 	matrix.add_known_chars(found_chars)
+	matrix.add_inactive_word(word)
 	matrix.reload()
 	
 	timer.time_left = timer.time_left - time_penalty

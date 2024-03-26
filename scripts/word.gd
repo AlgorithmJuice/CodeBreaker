@@ -4,7 +4,9 @@ var _word: String = ""
 var themes: Dictionary = {
 	"default": null,
 	"highlighted_word": preload("res://themes/highlighted_word.tres"),
-	"highlighted_character": preload("res://themes/highlighted_character.tres")
+	"highlighted_character": preload("res://themes/highlighted_character.tres"),
+	"inactive_word": preload("res://themes/inactive_word.tres"),
+	"inactive_highlighted_word": preload("res://themes/inactive_highlighted_word.tres")
 }
 
 var word: String:
@@ -38,18 +40,40 @@ func _set_word(text):
 		var label = Label.new()
 		label.text = character
 		$WordContainer.add_child(label)
+
+func inactive_word_check(inactive_words):
+	if _word in inactive_words:
+		for character in $WordContainer.get_children():
+			character.set_theme(themes["inactive_word"])
+		return true
+	return false
+	
+func inactive_highlight_word_check(inactive_words):
+	if _word in inactive_words:
+		for character in $WordContainer.get_children():
+			character.set_theme(themes["inactive_highlighted_word"])
+		return true
+	return false
+
+func highlight_word(inactive_words):
+	if(inactive_highlight_word_check(inactive_words)):
+		return
 		
-func highlight_word():
 	for character in $WordContainer.get_children():
 		character.set_theme(themes["highlighted_word"])
 	#$WordContainer.set_theme(themes["highlighted_word"])
 	
-func unhighlight_word():
+func unhighlight_word(inactive_words):
+	if(inactive_word_check(inactive_words)):
+		return
 	#$WordContainer.set_theme(themes["default"])
 	for character in $WordContainer.get_children():
 		character.set_theme(themes["default"])
 	
-func highlight_characters(known_characters):
+func highlight_characters(known_characters, inactive_words):
+	if(inactive_word_check(inactive_words)):
+		return
+		
 	for character in $WordContainer.get_children():
 		if character.text in known_characters:
 			character.set_theme(themes["highlighted_character"])
