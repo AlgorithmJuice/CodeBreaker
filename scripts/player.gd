@@ -27,7 +27,6 @@ func init():
 func _process(_delta):
 	_on_input_joystick()
 	_on_input_gamepad()
-	_on_timer_timeout()
 
 func _init_passphrase():
 	passphrase.words = correct_passphrase
@@ -35,6 +34,7 @@ func _init_passphrase():
 	passphrase.display()
 
 func _init_timer():
+	timer.find_child("CountdownTimer").timeout.connect(_on_timer_timeout)
 	timer.init_time = round_time
 	timer.start()
 	
@@ -65,12 +65,10 @@ func _on_input_gamepad():
 
 func _on_timer_timeout():
 	# TODO: Fix timer timeout by penalty.
-	
-	if timer.time_left <= 0:
-		matrix.reset()
-		
-		timer.wait_time = round_time
-		timer.start()
+	matrix.reset()
+	timer.stop()
+	timer.wait_time = round_time
+	timer.start()
 
 func _handle_correct_word():
 	current_round += 1
@@ -91,7 +89,7 @@ func _handle_wrong_word(word):
 	matrix.add_known_chars(found_chars)
 	matrix.reload()
 	
-	timer.time_left -= time_penalty
+	timer.time_left = timer.time_left - time_penalty
 
 func _is_leet(word):
 	var regex = RegEx.new()

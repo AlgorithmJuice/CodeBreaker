@@ -40,10 +40,14 @@ func _set_word(text):
 		$WordContainer.add_child(label)
 		
 func highlight_word():
-	$WordContainer.set_theme(themes["highlighted_word"])
+	for character in $WordContainer.get_children():
+		character.set_theme(themes["highlighted_word"])
+	#$WordContainer.set_theme(themes["highlighted_word"])
 	
 func unhighlight_word():
-	$WordContainer.set_theme(themes["default"])
+	#$WordContainer.set_theme(themes["default"])
+	for character in $WordContainer.get_children():
+		character.set_theme(themes["default"])
 	
 func highlight_characters(known_characters):
 	for character in $WordContainer.get_children():

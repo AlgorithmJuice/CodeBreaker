@@ -40,7 +40,8 @@ func reset():
 	display()
 
 func set_selected_index(input_vector):
-	selected_word.unhighlight_word() #clear()
+	selected_word.unhighlight_word()
+	selected_word.highlight_characters(known_chars) #clear()
 	
 	var index
 	if selected_index % self.columns == 0 and input_vector[0] < 0:
