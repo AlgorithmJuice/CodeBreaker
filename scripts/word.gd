@@ -1,6 +1,11 @@
 extends Node
 
 var _word: String = ""
+var themes: Dictionary = {
+	"default": null,
+	"highlighted_word": preload("res://themes/highlighted_word.tres"),
+	"highlighted_character": preload("res://themes/highlighted_character.tres")
+}
 
 var word: String:
 	get: return _word
@@ -33,3 +38,14 @@ func _set_word(text):
 		var label = Label.new()
 		label.text = character
 		$WordContainer.add_child(label)
+		
+func highlight_word():
+	$WordContainer.set_theme(themes["highlighted_word"])
+	
+func unhighlight_word():
+	$WordContainer.set_theme(themes["default"])
+	
+func highlight_characters(known_characters):
+	for character in $WordContainer.get_children():
+		if character.text in known_characters:
+			character.set_theme(themes["highlighted_character"])

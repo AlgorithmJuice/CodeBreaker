@@ -65,7 +65,7 @@ func _get_leets(password):
 
 func _init_player(player, passphrase, wordlists):
 	player.correct_passphrase = passphrase
-	player.wordlists = wordlists
+	player.wordlists = wordlists.duplicate(true)
 	player.round_time = round_time
 	player.time_penalty = time_penalty
 	

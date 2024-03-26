@@ -54,7 +54,7 @@ func _on_input_joystick():
 
 func _on_input_gamepad():
 	if Input.is_action_just_pressed("bgs_a_p%d" % id):
-		var word = matrix.selected_word
+		var word = matrix.selected_word.word
 		
 		if word == current_password:
 			_handle_correct_word()
