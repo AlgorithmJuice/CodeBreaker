@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://iksdacpb6ois"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://iksdacpb6ois"]
 
 [ext_resource type="FontFile" uid="uid://b61ij6qbqdbl2" path="res://fonts/sourcecode_pro/sourcecode_pro_regular.ttf" id="1_qiaqx"]
 
@@ -15,6 +15,11 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llmuu"]
 bg_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_s0rvt"]
+color = Color(0.14902, 0.588235, 0, 1)
+thickness = 3
+vertical = true
+
 [resource]
 default_font = ExtResource("1_qiaqx")
 default_font_size = 18
@@ -30,3 +35,5 @@ Button/styles/normal = SubResource("StyleBoxEmpty_61iel")
 Button/styles/pressed = SubResource("StyleBoxFlat_llmuu")
 Label/colors/font_color = Color(0.14902, 0.588235, 0, 1)
 RichTextLabel/colors/default_color = Color(0.14902, 0.588235, 0, 1)
+VSeparator/constants/separation = 26
+VSeparator/styles/separator = SubResource("StyleBoxLine_s0rvt")

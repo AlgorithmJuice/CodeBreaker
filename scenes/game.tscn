@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_570el"]
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_lru2y"]
-[ext_resource type="PackedScene" uid="uid://bn3dpmdmoc4ui" path="res://scenes/packed/player.tscn" id="3_1fxew"]
+[ext_resource type="PackedScene" uid="uid://bi4kr7m0s2gdu" path="res://scenes/packed/player.tscn" id="3_pgves"]
 
-[node name="Game" type="Control" node_paths=PackedStringArray("player1")]
+[node name="Game" type="Control" node_paths=PackedStringArray("player1", "player2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,11 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lru2y")
 script = ExtResource("1_570el")
-num_words = 64
+num_words = 66
 num_leet = 2
 round_time = 30
 time_penalty = 5
-player1 = NodePath("MarginContainer/Player1")
+player1 = NodePath("MarginContainer/HorizontalContainer/Player1")
+player2 = NodePath("MarginContainer/HorizontalContainer/Player2")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -41,6 +42,18 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Player1" parent="MarginContainer" instance=ExtResource("3_1fxew")]
+[node name="HorizontalContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="Player1" parent="MarginContainer/HorizontalContainer" instance=ExtResource("3_pgves")]
+layout_mode = 2
+size_flags_horizontal = 3
 id = 1
+
+[node name="Separator" type="VSeparator" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+
+[node name="Player2" parent="MarginContainer/HorizontalContainer" instance=ExtResource("3_pgves")]
+layout_mode = 2
+size_flags_horizontal = 3
+id = 2
