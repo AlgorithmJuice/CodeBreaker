@@ -1,5 +1,6 @@
 extends GridContainer
 
+var words = []
 var selected_index: int = 0
 var known_chars = []
 var word_scene: PackedScene = preload("res://scenes/packed/word.tscn")
@@ -19,33 +20,24 @@ func clear():
 		self.remove_child(child)
 		child.queue_free()
 
-func shuffle():
-	var children = self.get_children()
-	children.shuffle()
-	
-	for child in children:
-		self.remove_child(child)
-		self.add_child(child)
-
-func display(words):
+func display():
 	for word in words:
 		var word_instance = word_scene.instantiate()
 		word_instance.word = word
 		
 		self.add_child(word_instance)
-
-	shuffle()
 	_highlight_selected_word()
 
-func reset(words):
+func reset():
 	selected_index = 0
 	known_chars = []
 	clear()
 	
-	display(words)
+	words.shuffle()
+	display()
 
 func set_selected_index(input_vector):
-	self.get_child(selected_index).get_node("WordContainer").set_theme(themes["default"])
+	clear()
 	
 	var index
 	if selected_index % self.columns == 0 and input_vector[0] < 0:
@@ -60,7 +52,7 @@ func set_selected_index(input_vector):
 		index = (input_vector[0] + (input_vector[1] * self.columns))
 	
 	selected_index += index
-	_highlight_selected_word()
+	display()
 
 func add_known_chars(characters):
 	for character in characters:

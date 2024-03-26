@@ -39,7 +39,8 @@ func _init_timer():
 	timer.start()
 	
 func _init_matrix():
-	matrix.reset(current_wordlist)
+	matrix.words = current_wordlist
+	matrix.reset()
 
 func _on_input_joystick():
 	if Input.is_action_just_pressed("bgs_right_p%d" % id):
@@ -66,7 +67,7 @@ func _on_timer_timeout():
 	# TODO: Fix timer timeout by penalty.
 	
 	if timer.time_left <= 0:
-		matrix.reset(current_wordlist)
+		matrix.reset()
 		
 		timer.wait_time = round_time
 		timer.start()
@@ -77,7 +78,7 @@ func _handle_correct_word():
 	if current_round == total_rounds:
 		get_tree().change_scene_to_file("res://scenes/final.tscn")
 	else:
-		matrix.reset(current_wordlist)
+		matrix.reset()
 		passphrase.current_round = current_round
 		timer.reset()
 
