@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi4kr7m0s2gdu"]
+
+[ext_resource type="PackedScene" uid="uid://ddovcpoja5o2o" path="res://scenes/packed/passphrase.tscn" id="1_1db2q"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_ss7h6"]
+[ext_resource type="PackedScene" uid="uid://b2vignhq2hqhb" path="res://scenes/packed/timer.tscn" id="2_oq2fd"]
+[ext_resource type="PackedScene" uid="uid://doiljpngvp4sm" path="res://scenes/packed/matrix.tscn" id="3_uvf3v"]
+
+[node name="Player" type="VBoxContainer" node_paths=PackedStringArray("passphrase", "timer", "matrix")]
+offset_right = 556.0
+offset_bottom = 455.0
+theme_override_constants/separation = 25
+script = ExtResource("1_ss7h6")
+passphrase = NodePath("HorizontalContainer/Passphrase")
+timer = NodePath("HorizontalContainer/Timer")
+matrix = NodePath("Matrix")
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Passphrase" parent="HorizontalContainer" instance=ExtResource("1_1db2q")]
+layout_mode = 2
+
+[node name="Timer" parent="HorizontalContainer" instance=ExtResource("2_oq2fd")]
+layout_mode = 2
+
+[node name="Matrix" parent="." instance=ExtResource("3_uvf3v")]
+layout_mode = 2
+columns = 6

@@ -27,7 +27,6 @@ func init():
 func _process(_delta):
 	_on_input_joystick()
 	_on_input_gamepad()
-	_on_timer_timeout()
 
 func _init_passphrase():
 	passphrase.words = correct_passphrase
@@ -35,11 +34,13 @@ func _init_passphrase():
 	passphrase.display()
 
 func _init_timer():
+	timer.find_child("CountdownTimer").timeout.connect(_on_timer_timeout)
 	timer.init_time = round_time
 	timer.start()
 	
 func _init_matrix():
-	matrix.reset(current_wordlist)
+	matrix.words = current_wordlist
+	matrix.reset()
 
 func _on_input_joystick():
 	if Input.is_action_just_pressed("bgs_right_p%d" % id):
@@ -53,7 +54,7 @@ func _on_input_joystick():
 
 func _on_input_gamepad():
 	if Input.is_action_just_pressed("bgs_a_p%d" % id):
-		var word = matrix.selected_word
+		var word = matrix.selected_word.word
 		
 		if word == current_password:
 			_handle_correct_word()
@@ -64,12 +65,10 @@ func _on_input_gamepad():
 
 func _on_timer_timeout():
 	# TODO: Fix timer timeout by penalty.
-	
-	if timer.time_left <= 0:
-		matrix.reset(current_wordlist)
-		
-		timer.wait_time = round_time
-		timer.start()
+	matrix.reset()
+	timer.stop()
+	timer.wait_time = round_time
+	timer.start()
 
 func _handle_correct_word():
 	current_round += 1
@@ -77,7 +76,8 @@ func _handle_correct_word():
 	if current_round == total_rounds:
 		get_tree().change_scene_to_file("res://scenes/final.tscn")
 	else:
-		matrix.reset(current_wordlist)
+		matrix.words = current_wordlist
+		matrix.reset()
 		passphrase.current_round = current_round
 		timer.reset()
 
@@ -87,8 +87,10 @@ func _handle_leet_word():
 func _handle_wrong_word(word):
 	var found_chars = _compare_characters(word, current_password)
 	matrix.add_known_chars(found_chars)
+	matrix.add_inactive_word(word)
+	matrix.reload()
 	
-	timer.time_left -= time_penalty
+	timer.time_left = timer.time_left - time_penalty
 
 func _is_leet(word):
 	var regex = RegEx.new()

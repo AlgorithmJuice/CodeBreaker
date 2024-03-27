@@ -31,7 +31,8 @@ func _set_time_left(remaining):
 	stop()
 	
 	if remaining <= 0.0:
-		wait_time = init_time
+		$CountdownTimer.emit_signal("timeout")
+		wait_time = _init_time
 	else:
 		wait_time = remaining
 		

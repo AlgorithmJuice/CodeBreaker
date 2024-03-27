@@ -1,6 +1,5 @@
 extends Label
 
-
 @export var words: Array = []
 var current_round: int = 0
 
