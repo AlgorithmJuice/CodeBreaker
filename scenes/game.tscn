@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://qjlejwtsshco"]
+[gd_scene load_steps=4 format=3 uid="uid://qjlejwtsshco"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_570el"]
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_lru2y"]
 [ext_resource type="PackedScene" uid="uid://bi4kr7m0s2gdu" path="res://scenes/packed/player.tscn" id="3_pgves"]
-[ext_resource type="AudioStream" uid="uid://mhr6vprim8f7" path="res://sfx/music_game.mp3" id="4_fuo8l"]
 
 [node name="Game" type="Control" node_paths=PackedStringArray("player1", "player2", "music_player")]
 layout_mode = 3
@@ -20,7 +19,7 @@ round_time = 30
 time_penalty = 5
 player1 = NodePath("MarginContainer/HorizontalContainer/Player1")
 player2 = NodePath("MarginContainer/HorizontalContainer/Player2")
-music_player = NodePath("MusicPlayer")
+music_player = NodePath("")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -59,8 +58,3 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 id = 2
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_fuo8l")
-volume_db = -15.0
-autoplay = true

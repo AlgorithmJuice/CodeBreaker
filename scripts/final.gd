@@ -3,7 +3,11 @@ extends Control
 @export var player1: Button
 @export var player2: Button
 
+signal final_start
+
 func _ready():	
+	final_start.connect(Music._on_menu_start)
+	final_start.emit()
 	$VBoxContainer/StatContainer/Winner/Value.text = _format_winner(GameStats.winner)
 	$VBoxContainer/StatContainer/Passphrase/Value.text = _format_passphrase(GameStats.passphrase)
 	$VBoxContainer/StatContainer/Time/Value.text = _format_elapsed_time(GameStats.start_timestamp, GameStats.stop_timestamp)

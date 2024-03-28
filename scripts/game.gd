@@ -9,17 +9,21 @@ extends Control
 @export var player2: Node
 @export var music_player: Node
 
+signal game_start
+
 func _ready():
 	var passphrase = _gen_passphrase()
 	var wordlists = _gen_wordlists(passphrase)
+	game_start.connect(Music._on_game_start)
+	game_start.emit()
 	
 	_init_stats(passphrase)
 	_init_player(player1, passphrase, wordlists)
 	_init_player(player2, passphrase, wordlists)
 
 func _process(_delta):
-	if(!music_player.playing):
-		music_player.play()
+	pass
+
 
 func _gen_passphrase():
 	var phrase = GameData.phrases[randi() % GameData.phrases.size()]	

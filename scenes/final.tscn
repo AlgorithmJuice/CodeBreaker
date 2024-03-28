@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdex8suodadnt"]
+[gd_scene load_steps=8 format=3 uid="uid://cdex8suodadnt"]
 
 [ext_resource type="Texture2D" uid="uid://c0iny83hsaku7" path="res://images/game_over.png" id="1_mkksl"]
 [ext_resource type="Script" path="res://scripts/final.gd" id="1_pjxnq"]
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_t8ww7"]
-[ext_resource type="PackedScene" uid="uid://bn87m1p80ehn6" path="res://scenes/packed/play_button.tscn" id="2_fyo5w"]
+[ext_resource type="PackedScene" path="res://scenes/packed/play_button.tscn" id="2_fyo5w"]
 [ext_resource type="FontFile" uid="uid://cu2s0cuexbyt4" path="res://fonts/sourcecode_pro/sourcecode_pro_bold.ttf" id="4_0naqt"]
+[ext_resource type="AudioStream" uid="uid://cmarvc5n0pw2e" path="res://sfx/Victory.wav" id="6_hlt8u"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_2iklq"]
 color = Color(0, 0.85098, 0, 1)
@@ -119,5 +120,9 @@ theme_override_styles/separator = SubResource("StyleBoxLine_2iklq")
 [node name="ResetTimer" type="Timer" parent="."]
 wait_time = 30.0
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hlt8u")
+autoplay = true
 
 [connection signal="timeout" from="ResetTimer" to="." method="_on_timer_timeout"]
