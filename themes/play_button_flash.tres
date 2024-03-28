@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://rkvvfuns7qvn"]
+
+[ext_resource type="FontFile" uid="uid://b61ij6qbqdbl2" path="res://fonts/sourcecode_pro/sourcecode_pro_regular.ttf" id="1_afglg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l53la"]
+content_margin_left = 100.0
+content_margin_top = 50.0
+content_margin_right = 100.0
+content_margin_bottom = 50.0
+bg_color = Color(0, 0.85098, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.85098, 0, 1)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_afglg")
+Button/styles/normal = SubResource("StyleBoxFlat_l53la")
