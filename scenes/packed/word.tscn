@@ -52,4 +52,8 @@ text = "#"
 layout_mode = 2
 text = "#"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
 [connection signal="timeout" from="ByteLabel/ByteTimer" to="." method="_on_byte_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

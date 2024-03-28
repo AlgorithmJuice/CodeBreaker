@@ -16,12 +16,12 @@ func clear():
 		self.remove_child(child)
 		child.queue_free()
 
-func display():
+func display(is_new=false):
 	for i in range(words.size()):
 		var word = words[i]
 		
 		var word_instance = word_scene.instantiate()
-		word_instance.word = word
+		word_instance._set_word(word, is_new)
 		
 		if i == selected_index:
 			word_instance.highlight_word(inactive_words)
@@ -41,7 +41,7 @@ func reset():
 	words.shuffle()
 
 	clear()
-	display()
+	display(true)
 
 func set_selected_index(input_vector):
 	selection_change.emit()

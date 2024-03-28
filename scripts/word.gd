@@ -1,6 +1,7 @@
 extends Node
 
 var _word: String = ""
+var current_char_index = 0
 var themes: Dictionary = {
 	"default": null,
 	"highlighted_word": preload("res://themes/highlighted_word.tres"),
@@ -15,9 +16,18 @@ var word: String:
 
 func _ready():
 	$ByteLabel.text = _get_byte()
-	
+	$Timer.wait_time += (randf() * 0.04) - 0.02 
+	$Timer.start()
+
 func _on_byte_timer_timeout():
 	$ByteLabel.text = _get_byte()
+	
+func _on_timer_timeout():
+	if current_char_index < _word.length():
+		$WordContainer.get_child(current_char_index).visible = true
+		current_char_index += 1
+	else:
+		$Timer.stop() # Stop the timer if all characters are revealed
 	
 func _get_byte():
 	var byte = "x"
@@ -29,8 +39,15 @@ func _get_byte():
 		
 	return byte
 
-func _set_word(text):
+func _set_word(text, is_new=false):
 	_word = text
+	
+	if is_new:
+		current_char_index = 0
+	else:
+		current_char_index = _word.length() - 1
+	
+	current_char_index = 0 # Reset the current index for typewriting effect
 	
 	for child in $WordContainer.get_children():
 		$WordContainer.remove_child(child)
@@ -39,6 +56,8 @@ func _set_word(text):
 	for character in text:
 		var label = Label.new()
 		label.text = character
+		
+		label.visible = !is_new
 		$WordContainer.add_child(label)
 
 func inactive_word_check(inactive_words):
