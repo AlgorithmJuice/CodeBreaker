@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://v28066k0qh4g"]
+
+[ext_resource type="Theme" uid="uid://dqn8itqgeva6v" path="res://themes/play_button_normal.tres" id="1_fvytd"]
+[ext_resource type="Script" path="res://scripts/play_button.gd" id="2_j5nat"]
+
+[node name="PlayButton" type="Button"]
+offset_left = 37.0
+offset_top = 37.0
+offset_right = 189.0
+offset_bottom = 68.0
+theme = ExtResource("1_fvytd")
+text = "Start"
+script = ExtResource("2_j5nat")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
