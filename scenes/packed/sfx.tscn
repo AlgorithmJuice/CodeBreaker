@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdk0i27knyn71"]
+
+[ext_resource type="AudioStream" uid="uid://mm1wmha0umlo" path="res://sfx/type_click.wav" id="1_jidpy"]
+[ext_resource type="Script" path="res://scripts/sfx_player.gd" id="1_ttlwi"]
+[ext_resource type="AudioBusLayout" uid="uid://ch2wxcpbmf36k" path="res://default_bus_layout.tres" id="2_gidqp"]
+[ext_resource type="AudioStream" uid="uid://bekce72ux6dp3" path="res://sfx/Correct 1.wav" id="4_cegxf"]
+[ext_resource type="AudioStream" uid="uid://y7vbmqckp3qb" path="res://sfx/TimerReset.wav" id="5_jvoc6"]
+[ext_resource type="AudioStream" uid="uid://bbjhq0r8uu3ni" path="res://sfx/Beep.wav" id="6_wmoke"]
+
+[node name="Sfx" type="Node"]
+script = ExtResource("1_ttlwi")
+AudioBus1 = ExtResource("2_gidqp")
+
+[node name="TypeSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_jidpy")
+volume_db = 12.0
+attenuation = 0.406126
+max_polyphony = 12
+panning_strength = 3.0
+
+[node name="CorrectSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cegxf")
+
+[node name="TimerSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jvoc6")
+
+[node name="BeepSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wmoke")

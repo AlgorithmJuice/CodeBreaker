@@ -6,6 +6,8 @@ var known_chars = []
 var inactive_words = []
 var word_scene: PackedScene = preload("res://scenes/packed/word.tscn")
 
+signal selection_change
+
 var selected_word: Node:
 	get: return self.get_child(selected_index)
 
@@ -37,11 +39,12 @@ func reset():
 	known_chars = []
 	inactive_words = []
 	words.shuffle()
-	
+
 	clear()
 	display()
 
 func set_selected_index(input_vector):
+	selection_change.emit()
 	selected_word.unhighlight_word(inactive_words)
 	selected_word.highlight_characters(known_chars, inactive_words)
 	

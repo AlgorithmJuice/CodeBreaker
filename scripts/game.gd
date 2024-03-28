@@ -7,13 +7,17 @@ extends Control
 @export var time_penalty: int
 @export var player1: Node
 @export var player2: Node
+@export var music_player: Node
 
 func _ready():
 	var passphrase = _gen_passphrase()
 	var wordlists = _gen_wordlists(passphrase)
-	
 	_init_player(player1, passphrase, wordlists)
 	_init_player(player2, passphrase, wordlists)
+
+func _process(_delta):
+	if(!music_player.playing):
+		music_player.play()
 
 func _gen_passphrase():
 	var phrase = GameData.phrases[randi() % GameData.phrases.size()]	

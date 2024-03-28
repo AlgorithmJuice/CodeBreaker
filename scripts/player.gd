@@ -6,6 +6,7 @@ extends Node
 @export var passphrase: Node
 @export var timer: Node
 @export var matrix: Node
+@export var sfx_player: Node
 
 var correct_passphrase: Array = []
 var wordlists: Array = []
@@ -19,10 +20,16 @@ var current_wordlist: Array:
 var total_rounds: int:
 	get: return correct_passphrase.size()
 
+
+signal timer_out
+signal wrong_word
+signal correct_word
+
 func init():
 	_init_passphrase()
 	_init_timer()
 	_init_matrix()
+	_init_sfx_player()
 
 func _process(_delta):
 	_on_input_joystick()
@@ -41,6 +48,10 @@ func _init_timer():
 func _init_matrix():
 	matrix.words = current_wordlist
 	matrix.reset()
+	
+func _init_sfx_player():
+	matrix.selection_change.connect(sfx_player._on_matrix_selection_change)
+	sfx_player._init_sfx(id)
 
 func _on_input_joystick():
 	if Input.is_action_just_pressed("bgs_right_p%d" % id):
@@ -66,6 +77,7 @@ func _on_input_gamepad():
 func _on_timer_timeout():
 	# TODO: Fix timer timeout by penalty.
 	matrix.reset()
+	timer_out.emit()
 	timer.stop()
 	timer.wait_time = round_time
 	timer.start()
@@ -76,6 +88,7 @@ func _handle_correct_word():
 	if current_round == total_rounds:
 		get_tree().change_scene_to_file("res://scenes/final.tscn")
 	else:
+		correct_word.emit()
 		matrix.words = current_wordlist
 		matrix.reset()
 		passphrase.current_round = current_round
@@ -86,6 +99,7 @@ func _handle_leet_word():
 	
 func _handle_wrong_word(word):
 	var found_chars = _compare_characters(word, current_password)
+	wrong_word.emit()
 	matrix.add_known_chars(found_chars)
 	matrix.add_inactive_word(word)
 	matrix.reload()

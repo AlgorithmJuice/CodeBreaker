@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi4kr7m0s2gdu"]
+[gd_scene load_steps=6 format=3 uid="uid://bi4kr7m0s2gdu"]
 
 [ext_resource type="PackedScene" uid="uid://ddovcpoja5o2o" path="res://scenes/packed/passphrase.tscn" id="1_1db2q"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ss7h6"]
 [ext_resource type="PackedScene" uid="uid://b2vignhq2hqhb" path="res://scenes/packed/timer.tscn" id="2_oq2fd"]
 [ext_resource type="PackedScene" uid="uid://doiljpngvp4sm" path="res://scenes/packed/matrix.tscn" id="3_uvf3v"]
+[ext_resource type="PackedScene" uid="uid://cdk0i27knyn71" path="res://scenes/packed/sfx.tscn" id="5_ouug7"]
 
-[node name="Player" type="VBoxContainer" node_paths=PackedStringArray("passphrase", "timer", "matrix")]
+[node name="Player" type="VBoxContainer" node_paths=PackedStringArray("passphrase", "timer", "matrix", "sfx_player")]
 offset_right = 556.0
 offset_bottom = 455.0
 theme_override_constants/separation = 25
@@ -13,6 +14,7 @@ script = ExtResource("1_ss7h6")
 passphrase = NodePath("HorizontalContainer/Passphrase")
 timer = NodePath("HorizontalContainer/Timer")
 matrix = NodePath("Matrix")
+sfx_player = NodePath("Sfx")
 
 [node name="HorizontalContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -26,3 +28,10 @@ layout_mode = 2
 [node name="Matrix" parent="." instance=ExtResource("3_uvf3v")]
 layout_mode = 2
 columns = 6
+
+[node name="Sfx" parent="." instance=ExtResource("5_ouug7")]
+
+[connection signal="correct_word" from="." to="Sfx" method="_on_correct_word"]
+[connection signal="timer_out" from="." to="Sfx" method="_on_timer_reset"]
+[connection signal="wrong_word" from="." to="Sfx" method="_on_wrong_word"]
+[connection signal="selection_change" from="Matrix" to="Sfx" method="_on_matrix_selection_change"]
