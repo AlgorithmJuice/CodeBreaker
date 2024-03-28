@@ -1,18 +1,123 @@
-[gd_scene format=3 uid="uid://crgatq4871rtd"]
+[gd_scene load_steps=7 format=3 uid="uid://cdex8suodadnt"]
 
-[node name="Final" type="Control"]
+[ext_resource type="Texture2D" uid="uid://c0iny83hsaku7" path="res://images/game_over.png" id="1_mkksl"]
+[ext_resource type="Script" path="res://scripts/final.gd" id="1_pjxnq"]
+[ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_t8ww7"]
+[ext_resource type="PackedScene" uid="uid://bn87m1p80ehn6" path="res://scenes/packed/play_button.tscn" id="2_fyo5w"]
+[ext_resource type="FontFile" uid="uid://cu2s0cuexbyt4" path="res://fonts/sourcecode_pro/sourcecode_pro_bold.ttf" id="4_0naqt"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2iklq"]
+color = Color(0, 0.85098, 0, 1)
+thickness = 6
+
+[node name="Final" type="Control" node_paths=PackedStringArray("player1", "player2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_t8ww7")
+script = ExtResource("1_pjxnq")
+player1 = NodePath("VBoxContainer/ButtonContainer/Player1Button")
+player2 = NodePath("VBoxContainer/ButtonContainer/Player2Button")
 
-[node name="Container" type="Container" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 166.0
+offset_right = 2560.0
+offset_bottom = 1490.0
+theme_override_constants/separation = 175
 
-[node name="Label" type="Label" parent="Container"]
+[node name="BorderTop" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
-text = "Game Over"
+theme_override_styles/separator = SubResource("StyleBoxLine_2iklq")
+
+[node name="GameOver" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_mkksl")
+stretch_mode = 3
+
+[node name="StatContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Winner" type="HBoxContainer" parent="VBoxContainer/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Label" type="Label" parent="VBoxContainer/StatContainer/Winner"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Winner:"
+
+[node name="Value" type="Label" parent="VBoxContainer/StatContainer/Winner"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0naqt")
+theme_override_font_sizes/font_size = 30
+text = "Player #"
+
+[node name="Passphrase" type="HBoxContainer" parent="VBoxContainer/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Label" type="Label" parent="VBoxContainer/StatContainer/Passphrase"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Passphrase:"
+
+[node name="Value" type="Label" parent="VBoxContainer/StatContainer/Passphrase"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0naqt")
+theme_override_font_sizes/font_size = 30
+text = "#### ### ##### #### #### ######"
+
+[node name="Time" type="HBoxContainer" parent="VBoxContainer/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Label" type="Label" parent="VBoxContainer/StatContainer/Time"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Time:"
+
+[node name="Value" type="Label" parent="VBoxContainer/StatContainer/Time"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0naqt")
+theme_override_font_sizes/font_size = 30
+text = "00:00"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Player1Button" parent="VBoxContainer/ButtonContainer" instance=ExtResource("2_fyo5w")]
+layout_mode = 2
+text = "Player 1 Retry"
+id = 1
+
+[node name="Player2Button" parent="VBoxContainer/ButtonContainer" instance=ExtResource("2_fyo5w")]
+layout_mode = 2
+text = "Player 2 Retry"
+id = 2
+
+[node name="BorderBottom" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_2iklq")
+
+[node name="ResetTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="ResetTimer" to="." method="_on_timer_timeout"]

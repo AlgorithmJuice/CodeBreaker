@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_88xfn"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_ctlxc"]
 [ext_resource type="Texture2D" uid="uid://c65sst26bpeqj" path="res://images/logo.png" id="2_5lecu"]
-[ext_resource type="PackedScene" uid="uid://v28066k0qh4g" path="res://scenes/packed/play_button.tscn" id="4_cqt6r"]
+[ext_resource type="PackedScene" uid="uid://bn87m1p80ehn6" path="res://scenes/packed/play_button.tscn" id="4_cqt6r"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_i25b6"]
 color = Color(0, 0.85098, 0, 1)

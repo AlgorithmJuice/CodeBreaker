@@ -74,6 +74,9 @@ func _handle_correct_word():
 	current_round += 1
 	
 	if current_round == total_rounds:
+		GameStats.winner = id
+		GameStats.stop_timestamp = Time.get_unix_time_from_system()
+		
 		get_tree().change_scene_to_file("res://scenes/final.tscn")
 	else:
 		matrix.words = current_wordlist

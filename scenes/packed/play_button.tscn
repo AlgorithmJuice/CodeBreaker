@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://v28066k0qh4g"]
+[gd_scene load_steps=3 format=3 uid="uid://bn87m1p80ehn6"]
 
-[ext_resource type="Theme" uid="uid://dqn8itqgeva6v" path="res://themes/play_button_normal.tres" id="1_fvytd"]
+[ext_resource type="Theme" path="res://themes/play_button_normal.tres" id="1_fvytd"]
 [ext_resource type="Script" path="res://scripts/play_button.gd" id="2_j5nat"]
 
 [node name="PlayButton" type="Button"]

@@ -21,6 +21,7 @@ BgsCabCredits="*res://addons/bgs_cab_essentials/autoloads/bgs_credits_autoload.g
 BgsCabIdleQuit="*res://addons/bgs_cab_essentials/autoloads/bgs_idle_quit_autoload.gd"
 BgsGeneralConfig="*res://addons/bgs_cab_essentials/autoloads/bgs_general_autoload.gd"
 GameData="*res://scripts/data.gd"
+GameStats="*res://scripts/stats.gd"
 
 [bgs_arcade_cab]
 
