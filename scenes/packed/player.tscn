@@ -31,4 +31,7 @@ columns = 6
 
 [node name="Sfx" parent="." instance=ExtResource("5_ouug7")]
 
+[connection signal="correct_word" from="." to="Sfx" method="_on_correct_word"]
+[connection signal="timer_out" from="." to="Sfx" method="_on_timer_reset"]
+[connection signal="wrong_word" from="." to="Sfx" method="_on_wrong_word"]
 [connection signal="selection_change" from="Matrix" to="Sfx" method="_on_matrix_selection_change"]
