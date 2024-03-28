@@ -6,6 +6,7 @@ extends Node
 @export var passphrase: Node
 @export var timer: Node
 @export var matrix: Node
+@export var sfx_player: Node
 
 var correct_passphrase: Array = []
 var wordlists: Array = []
@@ -23,6 +24,7 @@ func init():
 	_init_passphrase()
 	_init_timer()
 	_init_matrix()
+	_init_sfx_player()
 
 func _process(_delta):
 	_on_input_joystick()
@@ -41,6 +43,10 @@ func _init_timer():
 func _init_matrix():
 	matrix.words = current_wordlist
 	matrix.reset()
+	
+func _init_sfx_player():
+	matrix.selection_change.connect(sfx_player._on_matrix_selection_change)
+	sfx_player._init_sfx(id)
 
 func _on_input_joystick():
 	if Input.is_action_just_pressed("bgs_right_p%d" % id):
