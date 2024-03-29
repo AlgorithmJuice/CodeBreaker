@@ -1,5 +1,8 @@
 extends Control
 
+@export var stat_winner: Label
+@export var stat_passphrase: Label
+@export var stat_time: Label
 @export var player1: Button
 @export var player2: Button
 
@@ -8,9 +11,9 @@ signal final_start
 func _ready():	
 	final_start.connect(Music._on_menu_start)
 	final_start.emit()
-	$VBoxContainer/StatContainer/Winner/Value.text = _format_winner(GameStats.winner)
-	$VBoxContainer/StatContainer/Passphrase/Value.text = _format_passphrase(GameStats.passphrase)
-	$VBoxContainer/StatContainer/Time/Value.text = _format_elapsed_time(GameStats.start_timestamp, GameStats.stop_timestamp)
+	stat_winner.text = _format_winner(GameStats.winner)
+	stat_passphrase.text = _format_passphrase(GameStats.passphrase)
+	stat_time.text = _format_elapsed_time(GameStats.start_timestamp, GameStats.stop_timestamp)
 
 func _process(_delta):
 	if player1.active and player2.active:

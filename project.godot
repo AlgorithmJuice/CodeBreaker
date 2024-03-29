@@ -31,7 +31,7 @@ general/force_fullscreen=true
 credits/minimum_required_credits=1
 credits/free_play_enabled=true
 idle_quit/enabled=true
-idle_quit/timeout=30
+idle_quit/timeout=60
 
 [debug]
 
@@ -41,6 +41,8 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=2560
 window/size/viewport_height=1440
+window/size/mode=3
+window/size/borderless=true
 
 [dotnet]
 

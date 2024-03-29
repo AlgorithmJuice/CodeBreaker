@@ -25,7 +25,9 @@ func _on_timer_timeout():
 
 func _on_input():
 	if Input.is_action_just_pressed("bgs_start_p%d" % id):
+		print("test")
 		active = !active
+		
 		
 		if active:
 			self.set_theme(themes["normal"])
