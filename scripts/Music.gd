@@ -15,7 +15,7 @@ func _on_menu_start():
 	activate_menu = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(!$MenuMusic.playing):
 		$MenuMusic.play()
 	
