@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/timer.gd" id="1_qrgfk"]
 
-[node name="Timer" type="Label"]
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Countdown"
-horizontal_alignment = 2
+[node name="ProgressBar" type="ProgressBar"]
+custom_minimum_size = Vector2(100, 20)
+offset_right = 4.0
+offset_bottom = 27.0
+value = 100.0
+show_percentage = false
 script = ExtResource("1_qrgfk")
 
 [node name="CountdownTimer" type="Timer" parent="."]

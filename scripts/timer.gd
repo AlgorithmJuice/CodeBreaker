@@ -1,4 +1,4 @@
-extends Label
+extends ProgressBar
 
 
 # TODO: I am way too tired to this...
@@ -18,10 +18,7 @@ var time_left: float:
 	set(remaining): _set_time_left(remaining)
 
 func _process(_delta):
-	self.text = _format()
-
-func _format():
-	return "%.2f" % time_left
+	self.value = (time_left / init_time) * max_value
 
 func _set_init_time(new_time):
 	_init_time = new_time

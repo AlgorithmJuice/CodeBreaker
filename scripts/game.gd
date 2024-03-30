@@ -21,10 +21,6 @@ func _ready():
 	_init_player(player1, passphrase, wordlists)
 	_init_player(player2, passphrase, wordlists)
 
-func _process(_delta):
-	pass
-
-
 func _gen_passphrase():
 	var phrase = GameData.phrases[randi() % GameData.phrases.size()]	
 	return phrase.split(" ")
