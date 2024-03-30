@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://dqn8itqgeva6v"]
 
-[ext_resource type="FontFile" uid="uid://b61ij6qbqdbl2" path="res://fonts/sourcecode_pro/sourcecode_pro_regular.ttf" id="1_5swvq"]
+[ext_resource type="FontFile" uid="uid://dlx6j0txa43km" path="res://fonts/hack/hack_regular.ttf" id="1_k6lrc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjn3q"]
 content_margin_left = 4.0
@@ -72,6 +72,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [resource]
+default_font = ExtResource("1_k6lrc")
 default_font_size = 39
 Button/colors/font_color = Color(0, 0.85098, 0, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -90,7 +91,6 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 32
-Button/fonts/font = ExtResource("1_5swvq")
 Button/styles/disabled = SubResource("StyleBoxFlat_gjn3q")
 Button/styles/focus = SubResource("StyleBoxFlat_nk01o")
 Button/styles/hover = SubResource("StyleBoxFlat_7na3v")

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://duedyx72ns8y0"
-path="res://.godot/imported/sourcecode_pro_italic.ttf-f28c55a1ddcdb149e2cacbd1a3a4e05d.fontdata"
+uid="uid://dormft4mkwb8q"
+path="res://.godot/imported/hack_bold.ttf-d35c1cc1ae3a1d247dc32790f1a79044.fontdata"
 
 [deps]
 
-source_file="res://fonts/sourcecode_pro/sourcecode_pro_italic.ttf"
-dest_files=["res://.godot/imported/sourcecode_pro_italic.ttf-f28c55a1ddcdb149e2cacbd1a3a4e05d.fontdata"]
+source_file="res://fonts/hack/hack_bold.ttf"
+dest_files=["res://.godot/imported/hack_bold.ttf-d35c1cc1ae3a1d247dc32790f1a79044.fontdata"]
 
 [params]
 
