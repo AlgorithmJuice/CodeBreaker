@@ -1,35 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi4kr7m0s2gdu"]
+[gd_scene load_steps=7 format=3 uid="uid://bi4kr7m0s2gdu"]
 
 [ext_resource type="PackedScene" uid="uid://ddovcpoja5o2o" path="res://scenes/packed/passphrase.tscn" id="1_1db2q"]
+[ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_7limn"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ss7h6"]
 [ext_resource type="PackedScene" uid="uid://b2vignhq2hqhb" path="res://scenes/packed/timer.tscn" id="2_oq2fd"]
 [ext_resource type="PackedScene" uid="uid://doiljpngvp4sm" path="res://scenes/packed/matrix.tscn" id="3_uvf3v"]
 [ext_resource type="PackedScene" path="res://scenes/packed/sfx.tscn" id="5_ouug7"]
 
 [node name="Player" type="VBoxContainer" node_paths=PackedStringArray("passphrase", "timer", "matrix", "sfx_player")]
-offset_right = 556.0
-offset_bottom = 455.0
-theme_override_constants/separation = 25
+offset_right = 1243.0
+offset_bottom = 1400.0
+theme = ExtResource("1_7limn")
+theme_override_constants/separation = 100
 script = ExtResource("1_ss7h6")
-passphrase = NodePath("HorizontalContainer/Passphrase")
-timer = NodePath("HorizontalContainer/Timer")
+passphrase = NodePath("VBoxContainer/Passphrase")
+timer = NodePath("VBoxContainer/Timer")
 matrix = NodePath("Matrix")
 sfx_player = NodePath("Sfx")
 
-[node name="HorizontalContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="Passphrase" parent="HorizontalContainer" instance=ExtResource("1_1db2q")]
+[node name="Passphrase" parent="VBoxContainer" instance=ExtResource("1_1db2q")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 64
+text = "### ### ##### #### ### #####"
+horizontal_alignment = 1
 
-[node name="Timer" parent="HorizontalContainer" instance=ExtResource("2_oq2fd")]
+[node name="Timer" parent="VBoxContainer" instance=ExtResource("2_oq2fd")]
+custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 
 [node name="Matrix" parent="." instance=ExtResource("3_uvf3v")]
 layout_mode = 2
-columns = 6
+columns = 4
 
 [node name="Sfx" parent="." instance=ExtResource("5_ouug7")]
 

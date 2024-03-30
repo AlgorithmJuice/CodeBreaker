@@ -13,9 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lru2y")
 script = ExtResource("1_570el")
-num_words = 66
+num_words = 80
 round_time = 60
-time_penalty = 5
+time_penalty = 10
 player1 = NodePath("MarginContainer/HorizontalContainer/Player1")
 player2 = NodePath("MarginContainer/HorizontalContainer/Player2")
 
@@ -34,10 +34,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = -80.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -51,6 +51,7 @@ id = 1
 
 [node name="Separator" type="VSeparator" parent="MarginContainer/HorizontalContainer"]
 layout_mode = 2
+theme_override_constants/separation = 75
 
 [node name="Player2" parent="MarginContainer/HorizontalContainer" instance=ExtResource("3_pgves")]
 layout_mode = 2
