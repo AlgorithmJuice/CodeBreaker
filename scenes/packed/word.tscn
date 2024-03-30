@@ -1,16 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw0a5l0pi1cw0"]
+[gd_scene load_steps=3 format=3 uid="uid://bw0a5l0pi1cw0"]
 
+[ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_uwqee"]
 [ext_resource type="Script" path="res://scripts/word.gd" id="1_w8p3w"]
 
 [node name="Word" type="HBoxContainer"]
 offset_right = 276.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
+theme = ExtResource("1_uwqee")
+theme_override_constants/separation = 10
 script = ExtResource("1_w8p3w")
 
 [node name="ByteLabel" type="Label" parent="."]
 layout_mode = 2
-text = "xFF "
+text = "xFF"
 
 [node name="ByteTimer" type="Timer" parent="ByteLabel"]
 wait_time = 0.1
