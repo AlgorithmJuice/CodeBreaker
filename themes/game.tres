@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://iksdacpb6ois"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://iksdacpb6ois"]
 
 [ext_resource type="FontFile" uid="uid://b61ij6qbqdbl2" path="res://fonts/sourcecode_pro/sourcecode_pro_regular.ttf" id="1_qiaqx"]
 
@@ -14,12 +14,6 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llmuu"]
 bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rv5ak"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmilb"]
-bg_color = Color(0.14902, 0.588235, 0, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_s0rvt"]
 color = Color(0.14902, 0.588235, 0, 1)
@@ -40,8 +34,6 @@ Button/styles/hover = SubResource("StyleBoxFlat_wm5e2")
 Button/styles/normal = SubResource("StyleBoxEmpty_61iel")
 Button/styles/pressed = SubResource("StyleBoxFlat_llmuu")
 Label/colors/font_color = Color(0.14902, 0.588235, 0, 1)
-ProgressBar/styles/background = SubResource("StyleBoxFlat_rv5ak")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_qmilb")
 RichTextLabel/colors/default_color = Color(0.14902, 0.588235, 0, 1)
 VSeparator/constants/separation = 26
 VSeparator/styles/separator = SubResource("StyleBoxLine_s0rvt")
