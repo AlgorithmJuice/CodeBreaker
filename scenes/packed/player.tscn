@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ss7h6"]
 [ext_resource type="PackedScene" uid="uid://b2vignhq2hqhb" path="res://scenes/packed/timer.tscn" id="2_oq2fd"]
 [ext_resource type="PackedScene" uid="uid://doiljpngvp4sm" path="res://scenes/packed/matrix.tscn" id="3_uvf3v"]
-[ext_resource type="PackedScene" path="res://scenes/packed/sfx.tscn" id="5_ouug7"]
+[ext_resource type="PackedScene" uid="uid://ibfgmx8g7yra" path="res://scenes/packed/sfx.tscn" id="5_ouug7"]
 
 [node name="Player" type="VBoxContainer" node_paths=PackedStringArray("passphrase", "timer", "matrix", "sfx_player")]
 offset_right = 1243.0
