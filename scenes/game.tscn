@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://qjlejwtsshco"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_570el"]
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_lru2y"]
+[ext_resource type="Script" path="res://scripts/game_scene.gd" id="2_qgki6"]
 [ext_resource type="PackedScene" uid="uid://bi4kr7m0s2gdu" path="res://scenes/packed/player.tscn" id="3_pgves"]
 
 [node name="Game" type="Control" node_paths=PackedStringArray("player1", "player2")]
@@ -12,21 +12,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lru2y")
-script = ExtResource("1_570el")
+script = ExtResource("2_qgki6")
 num_words = 80
 round_time = 60
 time_penalty = 10
 player1 = NodePath("MarginContainer/HorizontalContainer/Player1")
 player2 = NodePath("MarginContainer/HorizontalContainer/Player2")
-
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_direction = 1
