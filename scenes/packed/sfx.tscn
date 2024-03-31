@@ -11,12 +11,10 @@
 script = ExtResource("1_ttlwi")
 AudioBus1 = ExtResource("2_gidqp")
 
-[node name="TypeSfx" type="AudioStreamPlayer2D" parent="."]
+[node name="TypeSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_jidpy")
 volume_db = 12.0
-attenuation = 0.406126
 max_polyphony = 12
-panning_strength = 3.0
 
 [node name="CorrectSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_cegxf")

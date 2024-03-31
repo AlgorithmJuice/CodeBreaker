@@ -17,10 +17,10 @@ func _ready():
 
 func _process(_delta):
 	if player1.active and player2.active:
-		get_tree().change_scene_to_file("res://scenes/game.tscn")
+		SceneManager.change_scene("res://scenes/game.tscn")
 
 func _on_timer_timeout():
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	SceneManager.change_scene("res://scenes/main_menu.tscn")
 
 func _format_winner(winner):
 	return "Player %s" % winner

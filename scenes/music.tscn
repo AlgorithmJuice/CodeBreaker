@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://buys0r26j0gd"]
 
-[ext_resource type="Script" path="res://scripts/Music.gd" id="1_g414q"]
+[ext_resource type="Script" path="res://scripts/music.gd" id="1_g414q"]
 [ext_resource type="AudioStream" uid="uid://bvhyncnnyryrk" path="res://sfx/music_menu.mp3" id="2_7p036"]
 [ext_resource type="AudioStream" uid="uid://mhr6vprim8f7" path="res://sfx/music_game.mp3" id="3_mx4g2"]
 

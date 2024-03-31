@@ -50,7 +50,7 @@ func _init_matrix():
 	matrix.reset()
 	
 func _init_sfx_player():
-	#matrix.selection_change.connect(sfx_player._on_matrix_selection_change)
+	matrix.selection_change.connect(sfx_player._on_matrix_selection_change)
 	sfx_player._init_sfx(id)
 
 func _on_input_joystick():
@@ -89,7 +89,7 @@ func _handle_correct_word():
 		GameStats.winner = id
 		GameStats.stop_timestamp = Time.get_unix_time_from_system()
 		
-		get_tree().change_scene_to_file("res://scenes/final.tscn")
+		SceneManager.change_scene("res://scenes/game_over.tscn")
 	else:
 		correct_word.emit()
 		matrix.words = current_wordlist
