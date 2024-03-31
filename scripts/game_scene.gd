@@ -7,7 +7,6 @@ extends Control
 @export var time_penalty: int
 @export var player1: Node
 @export var player2: Node
-@export var music_player: Node
 
 signal game_start
 

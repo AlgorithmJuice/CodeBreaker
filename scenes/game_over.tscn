@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdex8suodadnt"]
+[gd_scene load_steps=8 format=3 uid="uid://cdex8suodadnt"]
 
 [ext_resource type="Theme" uid="uid://iksdacpb6ois" path="res://themes/game.tres" id="1_qt6rr"]
 [ext_resource type="Script" path="res://scripts/game_over_scene.gd" id="2_2fosk"]
@@ -6,10 +6,6 @@
 [ext_resource type="FontFile" uid="uid://dlx6j0txa43km" path="res://fonts/hack/hack_regular.ttf" id="4_nh1i3"]
 [ext_resource type="PackedScene" uid="uid://bn87m1p80ehn6" path="res://scenes/packed/play_button.tscn" id="5_tm0n0"]
 [ext_resource type="AudioStream" uid="uid://cmarvc5n0pw2e" path="res://sfx/Victory.wav" id="6_spurp"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_2iklq"]
-color = Color(0, 0.85098, 0, 1)
-thickness = 6
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ns5sk"]
 color = Color(0, 0.85098, 0, 1)
@@ -29,15 +25,6 @@ stat_passphrase = NodePath("VBoxContainer/VBoxContainer/StatContainer/Passphrase
 stat_time = NodePath("VBoxContainer/VBoxContainer/StatContainer/Time/Value")
 player1 = NodePath("VBoxContainer/VBoxContainer/ButtonContainer/Player1Button")
 player2 = NodePath("VBoxContainer/VBoxContainer/ButtonContainer/Player2Button")
-
-[node name="BorderBottom" type="HSeparator" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-offset_top = 939.0
-offset_right = 1920.0
-offset_bottom = 943.0
-theme_override_styles/separator = SubResource("StyleBoxLine_2iklq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
