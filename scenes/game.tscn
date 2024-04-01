@@ -38,6 +38,7 @@ layout_mode = 2
 [node name="Player1" parent="MarginContainer/HorizontalContainer" instance=ExtResource("3_pgves")]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
 id = 1
 
 [node name="Separator" type="VSeparator" parent="MarginContainer/HorizontalContainer"]
@@ -47,4 +48,5 @@ theme_override_constants/separation = 75
 [node name="Player2" parent="MarginContainer/HorizontalContainer" instance=ExtResource("3_pgves")]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
 id = 2

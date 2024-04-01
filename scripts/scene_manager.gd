@@ -1,24 +1,26 @@
 extends Node
 
-var _container: Control = null
 
 func _get_container():
 	var current_scene = get_tree().current_scene
-	_container = current_scene.get_node("SubViewportContainer/SubViewport/Container")
+	return current_scene.get_node("SubViewportContainer/SubViewport/Container")
 	
-func _remove_scene():
-	var current_scene = _container.get_child(0)
+func _remove_scene(container):
+	var current_scene = container.get_child(0)
 	
-	_container.remove_child(current_scene)
+	container.remove_child(current_scene)
 	current_scene.queue_free()
 	
-func _add_scene(scene_name):
+func _add_scene(container, scene_name):
 	var new_scene = load(scene_name).instantiate()
-	_container.add_child(new_scene)
+	container.add_child(new_scene)
 	
 func change_scene(scene_name):
-	if not _container:
-		_get_container()
+	var container = _get_container()
+	
+	if not container:
+		get_tree().change_scene_to_file(scene_name)
+		return
 		
-	_remove_scene()
-	_add_scene(scene_name)
+	_remove_scene(container)
+	_add_scene(container, scene_name)
