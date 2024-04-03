@@ -44,6 +44,7 @@ func _set_word(text, is_new=false):
 	
 	if is_new:
 		current_char_index = 0
+		$Timer.start()
 	else:
 		current_char_index = _word.length() - 1
 	

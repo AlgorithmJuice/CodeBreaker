@@ -105,7 +105,6 @@ func _handle_wrong_word(word):
 	wrong_word.emit()
 	matrix.add_known_chars(found_chars)
 	matrix.add_inactive_word(word)
-	matrix.reload()
 	
 	timer.time_left = timer.time_left - time_penalty
 
