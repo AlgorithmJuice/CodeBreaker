@@ -20,7 +20,8 @@ func display(is_new=false):
 	for i in range(words.size()):
 		var word = words[i]
 		
-		var word_instance = word_scene.instantiate()
+		#var word_instance = word_scene.instantiate()
+		var word_instance = self.get_child(i)
 		word_instance._set_word(word, is_new)
 		
 		if i == selected_index:
@@ -28,10 +29,10 @@ func display(is_new=false):
 		else:
 			word_instance.highlight_characters(known_chars,inactive_words)
 		
-		self.add_child(word_instance)
+		#self.add_child(word_instance)
 
 func reload():
-	clear()
+	#clear()
 	display()
 
 func reset():
@@ -40,7 +41,7 @@ func reset():
 	inactive_words = []
 	words.shuffle()
 
-	clear()
+	#clear()
 	display(true)
 
 func set_selected_index(input_vector):
