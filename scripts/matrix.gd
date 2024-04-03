@@ -68,6 +68,28 @@ func add_inactive_word(word):
 	inactive_words.append(word)
 
 func add_known_chars(characters):
+	var new_chars = []
+	
 	for character in characters:
 		if character not in known_chars:
-			known_chars.append(character)
+			
+			new_chars.append(character)
+			
+	known_chars += new_chars
+	
+	for i in range(words.size()):
+		var word = self.get_child(i)
+		var has_known_chars = false
+		
+		for character in new_chars:
+			if character in word.word:
+				has_known_chars = true
+				break
+		
+		if has_known_chars:
+			word._set_word(word.word, true)
+		
+		if i == selected_index:
+			word.highlight_word(inactive_words)
+		else:
+			word.highlight_characters(known_chars,inactive_words)
