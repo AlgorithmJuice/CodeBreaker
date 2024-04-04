@@ -11,7 +11,7 @@
 color = Color(0, 0.85098, 0, 1)
 thickness = 6
 
-[node name="Final" type="Control" node_paths=PackedStringArray("stat_winner", "stat_passphrase", "stat_time", "player1", "player2")]
+[node name="GameOver" type="Control" node_paths=PackedStringArray("stat_winner", "stat_passphrase", "stat_time", "player1", "player2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

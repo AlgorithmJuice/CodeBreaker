@@ -33,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu" parent="SubViewportContainer/SubViewport/Container" instance=ExtResource("1_7c5eu")]
+[node name="MainMenu" parent="SubViewportContainer/SubViewport/Container" instance=ExtResource("1_7c5eu")]
 layout_mode = 2
 anchors_preset = 0
 
