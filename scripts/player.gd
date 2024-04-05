@@ -20,6 +20,10 @@ var current_wordlist: Array:
 var total_rounds: int:
 	get: return correct_passphrase.size()
 
+var move_delay = 0.5
+var move_repeat_rate = 0.09
+var move_timer = 0.0
+var last_direction = Vector2.ZERO
 
 signal timer_out
 signal wrong_word
@@ -31,8 +35,8 @@ func init():
 	_init_matrix()
 	_init_sfx_player()
 
-func _process(_delta):
-	_on_input_joystick()
+func _process(delta):
+	_on_input_joystick(delta)
 	_on_input_gamepad()
 
 func _init_passphrase():
@@ -53,15 +57,32 @@ func _init_sfx_player():
 	matrix.selection_change.connect(sfx_player._on_matrix_selection_change)
 	sfx_player._init_sfx(id)
 
-func _on_input_joystick():
-	if Input.is_action_just_pressed("bgs_right_p%d" % id):
-		matrix.set_selected_index([1, 0])
-	if Input.is_action_just_pressed("bgs_left_p%d" % id):
-		matrix.set_selected_index([-1, 0])
-	if Input.is_action_just_pressed("bgs_down_p%d" % id):
-		matrix.set_selected_index([0, 1])
-	if Input.is_action_just_pressed("bgs_up_p%d" % id):
-		matrix.set_selected_index([0, -1])
+func _on_input_joystick(delta):
+	var direction = Vector2.ZERO
+	
+	if Input.is_action_pressed("bgs_right_p%d" % id):
+		direction = Vector2.RIGHT
+	elif Input.is_action_pressed("bgs_left_p%d" % id):
+		direction = Vector2.LEFT
+	elif Input.is_action_pressed("bgs_down_p%d" % id):
+		direction = Vector2.DOWN
+	elif Input.is_action_pressed("bgs_up_p%d" % id):
+		direction = Vector2.UP
+
+	if direction != Vector2.ZERO:
+		if direction != last_direction or move_timer <= 0.0:
+			matrix.set_selected_index(direction)
+			last_direction = direction 
+			move_timer = move_delay 
+		else:
+			move_timer -= delta
+	else:
+		last_direction = Vector2.ZERO 
+		move_timer = 0.0 
+
+	if move_timer < 0.0:
+		move_timer += move_repeat_rate
+		matrix.set_selected_index(last_direction)
 
 func _on_input_gamepad():
 	if Input.is_action_just_pressed("bgs_a_p%d" % id):
