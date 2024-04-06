@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ibfgmx8g7yra"]
+[gd_scene load_steps=9 format=3 uid="uid://ibfgmx8g7yra"]
 
 [ext_resource type="AudioStream" uid="uid://mm1wmha0umlo" path="res://sfx/type_click.wav" id="1_jidpy"]
 [ext_resource type="Script" path="res://scripts/sfx_player.gd" id="1_ttlwi"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bekce72ux6dp3" path="res://sfx/Correct 1.wav" id="4_cegxf"]
 [ext_resource type="AudioStream" uid="uid://y7vbmqckp3qb" path="res://sfx/TimerReset.wav" id="5_jvoc6"]
 [ext_resource type="AudioStream" uid="uid://bbjhq0r8uu3ni" path="res://sfx/Beep.wav" id="6_wmoke"]
+[ext_resource type="AudioStream" uid="uid://bcdg2kf1uj7ha" path="res://sfx/TimeLow.mp3" id="7_g3suv"]
+[ext_resource type="AudioStream" uid="uid://ulnwcsujs3qj" path="res://sfx/Join.wav" id="8_1sqws"]
 
 [node name="Sfx" type="Node"]
 script = ExtResource("1_ttlwi")
@@ -24,3 +26,10 @@ stream = ExtResource("5_jvoc6")
 
 [node name="BeepSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wmoke")
+
+[node name="TimerLow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_g3suv")
+volume_db = -5.81
+
+[node name="PlayerReady" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1sqws")

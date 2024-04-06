@@ -9,6 +9,8 @@ extends Control
 signal final_start
 
 func _ready():	
+	player1.get_node("Sfx")._init_sfx(1)
+	player2.get_node("Sfx")._init_sfx(2)
 	final_start.connect(Music._on_menu_start)
 	final_start.emit()
 	stat_winner.text = _format_winner(GameStats.winner)

@@ -10,6 +10,8 @@ var themes: Dictionary = {
 	"flash": preload("res://themes/progress_bar_flash.tres")
 }
 
+signal on_low_time
+
 var init_time: float:
 	get: return _init_time
 	set(new_time): _set_init_time(new_time)
@@ -28,8 +30,13 @@ func _ready():
 func _process(delta):
 	self.value = (time_left / init_time) * max_value
 
+	if $CountdownTimer.time_left < 10:
+		on_low_time.emit()
+		
+	
 	 # Check if the progress is in its last 1/3
 	if self.value <= self.max_value / 3:
+		
 		var time_fraction = time_left / (init_time / 3)
 		flash_rate = lerp(1.0, 4.0, 1.0 - time_fraction)
 

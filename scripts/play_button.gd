@@ -8,12 +8,16 @@ var themes: Dictionary = {
 	"flash": preload("res://themes/play_button_flash.tres")
 }
 
+signal on_active
+
+func _ready():
+	on_active.connect($Sfx._on_player_ready)
+
 func _process(_delta):
 	_on_input()
 
 func _on_timer_timeout():
 	if active:
-		self.set_theme(themes["flash"])
 		return
 	
 	flash = !flash
@@ -29,7 +33,9 @@ func _on_input():
 		
 		
 		if active:
-			self.set_theme(themes["normal"])
+			on_active.emit()
+			self.set_theme(themes["flash"])
 			self.text = "Player %d Ready" % id
 		else:
+			self.set_theme(themes["normal"])
 			self.text = "Player %d Start" % id

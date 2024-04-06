@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn87m1p80ehn6"]
+[gd_scene load_steps=4 format=3 uid="uid://coonhwdjrpbhl"]
 
-[ext_resource type="Theme" path="res://themes/play_button_normal.tres" id="1_fvytd"]
+[ext_resource type="Theme" uid="uid://dqn8itqgeva6v" path="res://themes/play_button_normal.tres" id="1_fvytd"]
 [ext_resource type="Script" path="res://scripts/play_button.gd" id="2_j5nat"]
+[ext_resource type="PackedScene" uid="uid://ibfgmx8g7yra" path="res://scenes/packed/sfx.tscn" id="3_askho"]
 
 [node name="PlayButton" type="Button"]
 offset_left = 37.0
@@ -14,5 +15,7 @@ script = ExtResource("2_j5nat")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Sfx" parent="." instance=ExtResource("3_askho")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

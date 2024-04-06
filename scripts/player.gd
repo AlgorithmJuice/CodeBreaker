@@ -48,6 +48,7 @@ func _init_timer():
 	timer.find_child("CountdownTimer").timeout.connect(_on_timer_timeout)
 	timer.init_time = round_time
 	timer.start()
+	timer.on_low_time.connect(sfx_player._on_low_time)
 	
 func _init_matrix():
 	matrix.words = current_wordlist
