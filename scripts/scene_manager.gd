@@ -15,7 +15,10 @@ func _add_scene(container, scene_name):
 	var new_scene = load(scene_name).instantiate()
 	container.add_child(new_scene)
 	
-func change_scene(scene_name):
+func change_scene(scene_name, delay = 0):
+	if delay > 0:
+		await get_tree().create_timer(delay).timeout
+	
 	var container = _get_container()
 	
 	if not container:

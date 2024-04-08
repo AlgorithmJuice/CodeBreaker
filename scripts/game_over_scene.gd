@@ -6,20 +6,24 @@ extends Control
 @export var player1: Button
 @export var player2: Button
 
+var _active: bool = true
+
 signal final_start
 
-func _ready():	
+func _ready():
 	player1.get_node("Sfx")._init_sfx(1)
 	player2.get_node("Sfx")._init_sfx(2)
-	final_start.connect(Music._on_menu_start)
+	final_start.connect(BPM.get_node("Music")._on_menu_start)
 	final_start.emit()
 	stat_winner.text = _format_winner(GameStats.winner)
 	stat_passphrase.text = _format_passphrase(GameStats.passphrase)
 	stat_time.text = _format_elapsed_time(GameStats.start_timestamp, GameStats.stop_timestamp)
 
 func _process(_delta):
-	if player1.active and player2.active:
-		SceneManager.change_scene("res://scenes/game.tscn")
+	if _active:
+		if player1.active and player2.active:
+			SceneManager.change_scene("res://scenes/game.tscn", .5)
+			_active = false
 
 func _on_timer_timeout():
 	SceneManager.change_scene("res://scenes/main_menu.tscn")

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/game_over_scene.gd" id="2_2fosk"]
 [ext_resource type="Texture2D" uid="uid://c0iny83hsaku7" path="res://images/game_over.png" id="3_suq1n"]
 [ext_resource type="FontFile" uid="uid://dormft4mkwb8q" path="res://fonts/hack/hack_bold.ttf" id="4_rhh5j"]
-[ext_resource type="PackedScene" uid="uid://coonhwdjrpbhl" path="res://scenes/packed/play_button.tscn" id="5_tm0n0"]
+[ext_resource type="PackedScene" uid="uid://bn87m1p80ehn6" path="res://scenes/packed/play_button.tscn" id="5_tm0n0"]
 [ext_resource type="AudioStream" uid="uid://cmarvc5n0pw2e" path="res://sfx/Victory.wav" id="6_spurp"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ns5sk"]
