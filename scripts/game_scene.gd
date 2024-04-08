@@ -13,7 +13,7 @@ signal game_start
 func _ready():
 	var passphrase = _gen_passphrase()
 	var wordlists = _gen_wordlists(passphrase)
-	game_start.connect(Music._on_game_start)
+	game_start.connect(BPM.get_node("Music")._on_game_start)
 	game_start.emit()
 	
 	_init_stats(passphrase)

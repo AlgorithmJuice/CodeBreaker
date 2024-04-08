@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://buys0r26j0gd"]
+[gd_scene load_steps=5 format=3 uid="uid://buys0r26j0gd"]
 
 [ext_resource type="Script" path="res://scripts/music.gd" id="1_g414q"]
 [ext_resource type="AudioStream" uid="uid://bvhyncnnyryrk" path="res://sfx/music_menu.mp3" id="2_7p036"]
 [ext_resource type="AudioStream" uid="uid://mhr6vprim8f7" path="res://sfx/music_game.mp3" id="3_mx4g2"]
+[ext_resource type="Script" path="res://scripts/bpm_controller.gd" id="6_r4wq3"]
 
-[node name="Music" type="Node"]
+[node name="BPM" type="Node"]
+script = ExtResource("6_r4wq3")
+
+[node name="Music" type="Node" parent="."]
 script = ExtResource("1_g414q")
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_7p036")
-autoplay = true
 
-[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+[node name="GameMusic" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("3_mx4g2")
 volume_db = -80.0
-autoplay = true

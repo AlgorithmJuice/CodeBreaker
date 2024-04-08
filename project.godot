@@ -22,7 +22,7 @@ BgsCabIdleQuit="*res://addons/bgs_cab_essentials/autoloads/bgs_idle_quit_autoloa
 BgsGeneralConfig="*res://addons/bgs_cab_essentials/autoloads/bgs_general_autoload.gd"
 GameData="*res://scripts/data.gd"
 GameStats="*res://scripts/stats.gd"
-Music="*res://scenes/music.tscn"
+BPM="*res://scenes/bpm.tscn"
 SceneManager="*res://scripts/scene_manager.gd"
 
 [bgs_arcade_cab]
