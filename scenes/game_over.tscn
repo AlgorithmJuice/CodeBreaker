@@ -20,11 +20,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qt6rr")
 script = ExtResource("2_2fosk")
-stat_winner = NodePath("VBoxContainer/VBoxContainer/StatContainer/Winner/Value")
-stat_passphrase = NodePath("VBoxContainer/VBoxContainer/StatContainer/Passphrase/Value")
-stat_time = NodePath("VBoxContainer/VBoxContainer/StatContainer/Time/Value")
-player1 = NodePath("VBoxContainer/VBoxContainer/ButtonContainer/Player1Button")
-player2 = NodePath("VBoxContainer/VBoxContainer/ButtonContainer/Player2Button")
+stat_winner = NodePath("VBoxContainer/GameOverContainer/StatContainer/Winner/Value")
+stat_passphrase = NodePath("VBoxContainer/GameOverContainer/StatContainer/Passphrase/Value")
+stat_time = NodePath("VBoxContainer/GameOverContainer/StatContainer/Time/Value")
+player1 = NodePath("VBoxContainer/GameOverContainer/ButtonContainer/Player1Button")
+player2 = NodePath("VBoxContainer/GameOverContainer/ButtonContainer/Player2Button")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -40,82 +40,101 @@ alignment = 1
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_ns5sk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="GameOverContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 175
 alignment = 1
 
-[node name="GameOver" type="TextureRect" parent="VBoxContainer/VBoxContainer"]
+[node name="GameOver" type="TextureRect" parent="VBoxContainer/GameOverContainer"]
 layout_mode = 2
 texture = ExtResource("3_suq1n")
 stretch_mode = 3
 
-[node name="StatContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="StatContainer" type="HBoxContainer" parent="VBoxContainer/GameOverContainer"]
 layout_mode = 2
 theme_override_constants/separation = 150
 alignment = 1
 
-[node name="Winner" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/StatContainer"]
+[node name="Winner" type="HBoxContainer" parent="VBoxContainer/GameOverContainer/StatContainer"]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/StatContainer/Winner"]
+[node name="Label" type="Label" parent="VBoxContainer/GameOverContainer/StatContainer/Winner"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Winner:"
 
-[node name="Value" type="Label" parent="VBoxContainer/VBoxContainer/StatContainer/Winner"]
+[node name="Value" type="Label" parent="VBoxContainer/GameOverContainer/StatContainer/Winner"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_rhh5j")
 theme_override_font_sizes/font_size = 30
 text = "Player #"
 
-[node name="Passphrase" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/StatContainer"]
+[node name="Passphrase" type="HBoxContainer" parent="VBoxContainer/GameOverContainer/StatContainer"]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/StatContainer/Passphrase"]
+[node name="Label" type="Label" parent="VBoxContainer/GameOverContainer/StatContainer/Passphrase"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Passphrase:"
 
-[node name="Value" type="Label" parent="VBoxContainer/VBoxContainer/StatContainer/Passphrase"]
+[node name="Value" type="Label" parent="VBoxContainer/GameOverContainer/StatContainer/Passphrase"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_rhh5j")
 theme_override_font_sizes/font_size = 30
 text = "#### ### ##### #### #### ######"
 
-[node name="Time" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/StatContainer"]
+[node name="Time" type="HBoxContainer" parent="VBoxContainer/GameOverContainer/StatContainer"]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/StatContainer/Time"]
+[node name="Label" type="Label" parent="VBoxContainer/GameOverContainer/StatContainer/Time"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Time:"
 
-[node name="Value" type="Label" parent="VBoxContainer/VBoxContainer/StatContainer/Time"]
+[node name="Value" type="Label" parent="VBoxContainer/GameOverContainer/StatContainer/Time"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_rhh5j")
 theme_override_font_sizes/font_size = 30
 text = "00:00"
 
-[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer/GameOverContainer"]
 layout_mode = 2
 theme_override_constants/separation = 150
 alignment = 1
 
-[node name="Player1Button" parent="VBoxContainer/VBoxContainer/ButtonContainer" instance=ExtResource("5_tm0n0")]
+[node name="Player1Button" parent="VBoxContainer/GameOverContainer/ButtonContainer" instance=ExtResource("5_tm0n0")]
 layout_mode = 2
 text = "Player 1 Retry"
 id = 1
 
-[node name="Player2Button" parent="VBoxContainer/VBoxContainer/ButtonContainer" instance=ExtResource("5_tm0n0")]
+[node name="Player2Button" parent="VBoxContainer/GameOverContainer/ButtonContainer" instance=ExtResource("5_tm0n0")]
 layout_mode = 2
 text = "Player 2 Retry"
 id = 2
 
-[node name="BorderBottom" type="HSeparator" parent="VBoxContainer"]
+[node name="SubtextContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SubtextContainer"]
+layout_mode = 2
+
+[node name="CopyrightLabel" type="Label" parent="VBoxContainer/SubtextContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "   Copyright © 2024"
+
+[node name="CreditsLabel" type="Label" parent="VBoxContainer/SubtextContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "Gavin Youker • Nathan Perkins • Davis Pruett   "
+horizontal_alignment = 2
+
+[node name="BorderBottom" type="HSeparator" parent="VBoxContainer/SubtextContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_ns5sk")
 
